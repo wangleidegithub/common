@@ -1,0 +1,187 @@
+{
+    "code":0,
+    "count":20,
+    "msg":"",
+    "data":[
+        {
+            "id":"1",
+            "name":"系统设置",
+            "pid":"0",
+            "rule_id":"29",
+            "icon":"iconfont xman-menu",
+            "target":"default",
+            "link":"system"
+        },
+        {
+            "id":"3",
+            "name":"内容管理",
+            "pid":"0",
+            "rule_id":"27",
+            "icon":"iconfont xman-file-text",
+            "target":"default",
+            "link":"content"
+        },
+        {
+            "id":"6",
+            "name":"后台用户管理",
+            "pid":"39",
+            "rule_id":"18",
+            "icon":"layui-icon layui-icon-username",
+            "target":"default",
+            "link":"admin/auth/admin_user"
+        },
+        {
+            "id":"7",
+            "name":"角色组管理",
+            "pid":"39",
+            "rule_id":"32",
+            "icon":"layui-icon layui-icon-user",
+            "target":"default",
+            "link":"admin/auth/group"
+        },
+        {
+            "id":"8",
+            "name":"规则管理",
+            "pid":"39",
+            "rule_id":"1",
+            "icon":"layui-icon layui-icon-align-center",
+            "target":"default",
+            "link":"admin/auth/rule"
+        },
+        {
+            "id":"9",
+            "name":"文章管理",
+            "pid":"3",
+            "rule_id":"124",
+            "icon":"layui-icon layui-icon-read",
+            "target":"default",
+            "link":"admin/article/index"
+        },
+        {
+            "id":"18",
+            "name":"系统日志",
+            "pid":"1",
+            "rule_id":"12",
+            "icon":"layui-icon layui-icon-tabs",
+            "target":"default",
+            "link":"system_log"
+        },
+        {
+            "id":"19",
+            "name":"更新日志",
+            "pid":"1",
+            "rule_id":"155",
+            "icon":"layui-icon layui-icon-note",
+            "target":"default",
+            "link":"admin/updatelog/index"
+        },
+        {
+            "id":"20",
+            "name":"代码生成器",
+            "pid":"1",
+            "rule_id":"48",
+            "icon":"iconfont xman-android",
+            "target":"default",
+            "link":"admin/makecode/index"
+        },
+        {
+            "id":"28",
+            "name":"皮肤管理",
+            "pid":"1",
+            "rule_id":"159",
+            "icon":"iconfont xman-skin",
+            "target":"default",
+            "link":"admin/systemskin/index"
+        },
+        {
+            "id":"30",
+            "name":"操作日志",
+            "pid":"18",
+            "rule_id":"67",
+            "icon":"iconfont xman-control-fill",
+            "target":"default",
+            "link":"admin/systemoperationlog/index"
+        },
+        {
+            "id":"31",
+            "name":"登录日志",
+            "pid":"18",
+            "rule_id":"65",
+            "icon":"layui-icon layui-icon-log",
+            "target":"default",
+            "link":"admin/systemloginlog/index"
+        },
+        {
+            "id":"32",
+            "name":"错误日志",
+            "pid":"18",
+            "rule_id":"63",
+            "icon":"layui-icon layui-icon-tabs",
+            "target":"default",
+            "link":"admin/systemerrorlog/index"
+        },
+        {
+            "id":"34",
+            "name":"点赞",
+            "pid":"3",
+            "rule_id":"163",
+            "icon":"iconfont xman-like",
+            "target":"default",
+            "link":"https://fly.layui.com/case/u/8917272"
+        },
+        {
+            "id":"36",
+            "name":"菜单管理",
+            "pid":"1",
+            "rule_id":"19",
+            "icon":"iconfont xman-menu",
+            "target":"default",
+            "link":"admin/auth/menus"
+        },
+        {
+            "id":"37",
+            "name":"testtest",
+            "pid":"3",
+            "rule_id":"154",
+            "icon":"iconfont xman-menu",
+            "target":"default",
+            "link":"admin/testtest/index"
+        },
+        {
+            "id":"38",
+            "name":"Test控制器",
+            "pid":"1",
+            "rule_id":"145",
+            "icon":"layui-icon layui-icon-rate",
+            "target":"default",
+            "link":"admin/test/index"
+        },
+        {
+            "id":"39",
+            "name":"权限管理",
+            "pid":"1",
+            "rule_id":"32",
+            "icon":"iconfont xman-file-text",
+            "target":"default",
+            "link":"admin/auth/group"
+        },
+        {
+            "id":"40",
+            "name":"用户管理",
+            "pid":"3",
+            "rule_id":"116",
+            "icon":"layui-icon layui-icon-username",
+            "target":"default",
+            "link":"admin/user/index"
+        },
+        {
+            "id":"41",
+            "name":"点赞",
+            "pid":"1",
+            "rule_id":"163",
+            "icon":"iconfont xman-like-fill",
+            "target":"_blank",
+            "link":"https://fly.layui.com/case/u/8917272"
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+ 
+    </style>
+</head>
+<body>
+<div id="app">
+    <p>{{remessage}}</p>
+    <p>{{remessagetwo}}</p>
+    <p>{{a}}+{{b}}={{c}}</p>
+    <p>{{a}}+{{b}}+{{c}}={{d}}</p>
+    <b>计算属性是基于它们的依赖进行缓存的，通常用方法来替换计算属性</b>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+<script type="text/javascript">
+new Vue({
+    el:"#app",
+    data:{
+        a:15,
+        b:20,
+        message:"我要等待1s后显示"
+    },
+    //钩子函数
+    computed:{
+        //设置计算属性
+        remessage:function(){
+            return this.message.split('').reverse().join(' ');
+        },
+        remessagetwo:function(){
+            return this.remessage.split('').reverse().join(' ');
+        },
+        //计算属性处理 a+b=c
+        c:function(){
+            return this.a+this.b
+        },
+        d:{
+            //getter
+            get:function(){
+                this.d=100;//这里改变了d的值会优先进入下方的set 重置了a的值 影响了最后d的结果值
+                return this.a+this.b+this.c;
+            },
+            set:function(newValue){
+                console.log("d="+newValue);
+                this.a=20;
+            }
+        }
+    },
+    methods:{
+ 
+    }
+});
+</script>
+</body>
+</html>

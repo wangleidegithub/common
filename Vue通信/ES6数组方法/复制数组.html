@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+//	方法1：循环
+/*var arr1=[1,2,3];
+var arr2=[];
+for(var i=0;i<arr1.length;i++){
+arr2.push(arr[i]);
+}*/
+
+//方法2：Array.from(arr)  Array.from() 方法从一个类似数组或可迭代对象中创建一个新的数组实例。
+var arr1=[1,2,3];
+var arr2=Array.from(arr1);
+//方法3：ES6新增——var arr2=[...arr];
+var arr1=[1,2,3];
+var arr2=[...arr1]; //复制arr1
+console.log(arr2);
+
+/*[...]也可以与函数的传参结合在一起
+通常我们定义一个函数，参数用arguments来表示，arguments是一个数组，但又不完全具备数组的性质*/
+function show(arguments){
+console.log(arguments);
+//arguments.push(5); //这个是错误的，因为参数是由传进来的实参决定的
+}
+show(1,2,3,4);
+
+//我们可以通过...来方便的将arguments转变成一个真正的数组
+function show(...args){
+console.log(args);
+args.push(5);
+console.log(args); //1,2,3,4,5
+}
+show(1,2,3,4);
+
+//https://github.com/thedaviddias/Front-End-Checklist?utm_source=gold_browser_extension#head
+</script>

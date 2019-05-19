@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<img src="../img/activity.png" class="img1"></img>
+        <input type="button" value="download_image" onclick="downloadIamge('.img1','../img/activity.png')">  
+
+	</body>
+</html>
+<script type="text/javascript">
+	
+function downloadIamge(selector, name) {
+     // 通过选择器获取img元素
+    var img = document.querySelector(selector)
+    // 将图片的src属性作为URL地址
+    var url = img.src
+    var a = document.createElement('a')
+    var event = new MouseEvent('click')
+    
+    a.download = name || '下载图片名称'
+    // a.href = url
+    
+    a.dispatchEvent(event)
+}
+
+
+</script>

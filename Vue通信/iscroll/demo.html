@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 横向滚动</title>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
+    <script src="http://cdn.bootcss.com/iScroll/5.2.0/iscroll.js"></script>
+    <style>
+        div{
+            width:80%; margin: 50px auto; border: 1px solid seagreen; overflow: hidden;
+        }
+        ul{
+            margin: 0; padding: 0; list-style: none;overflow: hidden;
+        }
+        li{
+            padding: 15px 0; float: left; list-style: none;
+            width: 100px;margin: 10px; text-align: center; background: rosybrown;
+        }
+        li.active{
+            background: red;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+<ul>
+    <li>第1个</li>
+    <li>第2个</li>
+    <li>第3个</li>
+    <li>第4个</li>
+    <li>第5个</li>
+    <li class="active">第6个</li>
+    <li>第7个</li>
+</ul>
+</div>
+<script>
+    var ele = $("ul");  
+    console.log(ele.find("li").width());
+    ele.width((ele.find("li").length + 1) * (ele.find("li").width()+20));
+    var myScroll = new IScroll('div', {scrollX: true, scrollY: false, mouseWheel: true,
+    scrollbars: true});
+    myScroll.scrollToElement('.active',true,true);
+    //http://www.mamicode.com/info-detail-331827.html
+    // https://blog.csdn.net/u014665035/article/details/53183939?utm_source=blogxgwz6
+</script>
+</body>
+</html>
+<script type="text/javascript">
+    let arr={"appId":"wxfd3463e6aebadd08","timeStamp":"1544685119","nonceStr":"5c12063f2373a","package":"prepay_id=wx13151159101118a01482390c2219594056","signType":"MD5","paySign":"4DA1A29123BAF656A0B8EC0990888011"};
+    console.log(typeof arr);
+</script>

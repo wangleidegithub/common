@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+        <!--<link rel="stylesheet" type="text/css" href="../css/normalize.css"/>-->
+        <!--<link rel="stylesheet" type="text/css" href="../font-awesome-4.7.0/css/font-awesome.css"/>-->
+        <style>
+            html,body{
+                height: 100%;
+            }
+            #app{
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+            header{
+                height: 40px;
+                line-height: 40px;
+                background-color: #DDD;
+            }
+            main{
+                flex: 1;
+                display: block;
+                position: relative;
+                overflow: hidden;
+            }
+            ul{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                
+                position: initial;
+            }
+            footer{
+                height: 40px;
+                line-height: 40px;
+                background-color: #DDD;
+            }
+            li{
+                height: 200px;
+                border-bottom: 1px solid #DDD;
+            }
+            .boxconter{
+                text-align: center;
+                padding: 10px 0;
+                height: 50px;
+            }
+            .boxconter p{
+                margin-top: 10px;
+                margin-bottom: 0;
+            }
+            .list li{
+                width: 50%;
+                text-align: center;
+                height:36px;
+                line-height: 36px;    
+                display: inline-block;            
+            }
+            .div{
+                height: 100%;
+                width: 100%;
+                display: none;
+            }
+            .div:nth-child(1){
+                display: block;
+            }
+        </style>
+    
+    </head>
+    <body  orient="landspace">
+        <div id="app">
+            <header>
+                我是header
+            </header>
+            <ul class="list">
+                <li>1</li><li>2</li>
+            </ul>
+            <main>            
+                <div class="div">
+                	<ul>
+                        <li v-for="item in items">{{item}}</li>    
+                        <li class="boxconter" v-show="!boxshow">加载更多</li>
+                        <li class="boxconter" v-show="boxshow">
+                            <span class="fa fa-spinner fa-pulse"></span>
+                            <p>{{boxtext}}</p>
+                        </li>             
+                    </ul>
+                </div>
+                <div class="div">
+                    <ul>
+                            <li v-for="item in 20">{{item.username}}</li>    
+                            <li class="boxconter" v-show="!boxshow">加载更多</li>
+                            <li class="boxconter" v-show="boxshow">
+                                <span class="fa fa-spinner fa-pulse"></span>
+                                <p>{{boxtext}}</p>
+                            </li>             
+                    </ul>
+                </div>
+            </main>
+            <footer>
+                我是footer
+            </footer>
+        </div>
+        <script src="../js/vue.min.js"></script>
+       <script type="text/javascript" src="bscroll.min.js"></script>
+       <script src="../js/jquery-1.9.1.min.js"></script>	
+        <script>
+        
+            var vm = new Vue({
+                el:"#app",
+                data:{
+                    items:[],
+                    boxshow:true,
+                    boxtext:"加载中"
+                },
+                methods:{
+                    aaa(){
+                        document.getElementsByTagName('main')[0].style.display = 'block';
+                        //this.meunScroll.refresh();
+                    }
+                },
+                mounted:function(){
+                	var that=this;
+                    var div = document.getElementsByClassName('div');
+                     $.ajax({
+                     	type:"get",
+						url:"http://dj.yiluzongheng.com/weixing/driverinfo/carsSourceLists?type=1&page=1&origins=lat:39.86476,lng:116.32412",
+						async:false,
+						dataType:'json',
+						success:function(res){
+							that.items=res.data;							
+						}
+                     })
+                    this.meunScroll1 = new BScroll(div[0], {
+                        click: true,
+                        scrollY: true,                        
+                          pullUpLoad:{
+                              threshold: -70, // 当上拉到超过底部 70px 时，                    
+                          }
+                   });
+                   console.log(this.meunScroll1);
+                   this.meunScroll2 = new BScroll(div[1], {
+                        click: true,
+                        scrollY: true,                        
+                          pullUpLoad:{
+                              threshold: -70, // 当上拉到超过底部 70px 时，                    
+                          }
+                   });
+                   var li = document.getElementsByClassName('list')[0].getElementsByTagName('li');
+                   [...li].forEach(function(el,index){
+                       this.index = index;
+                       el.onclick = function(){
+                            div[0].style.display = 'none';
+                            div[1].style.display = 'none';
+                            div[index].style.display = 'block';    
+                            vm.meunScroll2.refresh();                
+                        };
+                   })
+                  this.meunScroll1.on("pullingUp",function(){    
+                               this.boxshow = true;
+                                setTimeout(function(){
+                                	let data=[{username:111},{username:111},{username:111}]
+                                    this.items.push({username:111});  
+                                    this.$nextTick(function(){    
+                                    this.boxshow = false;                                
+                                    this.meunScroll1.finishPullUp();                                    
+                                    this.meunScroll1.refresh();  
+                                });
+                               }.bind(this),1000);                                 
+                   }.bind(this));     
+                }
+            })
+        </script>
+    </body>
+</html>

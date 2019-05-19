@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	alert(parseFloat("21.5%"));
+	var obj1 = { 
+    name: 'sven',
+    getName: function(){
+         return this.name;
+    } 
+};
+
+var obj2 = { 
+    name: 'anne'
+};
+// http://www.cnblogs.com/lengyuehuahun/p/5643625.html
+console.log( obj1.getName() );// 输出: sven
+console.log( obj1.getName.call(obj2)); // 输出:anne
+
+function Animal(name){
+  this.name = name;
+  this.showName = function(){
+        alert(this.name);    
+    }    
+}
+
+function Cat(name){
+  Animal.apply(this,[name]);    
+}
+
+var cat = new Cat("咕咕");
+cat.showName();
+
+/*call的用法*/
+Animal.call(this,name);
+
+</script>

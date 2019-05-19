@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul v-if="todos.length">
+		  <li v-for="todo in todos">
+		    {{ todo }}
+		  </li>
+		</ul>
+		<p v-else>No todos left!</p>
+	</body>
+</html>
+<!--https://www.smzdm.com/-->

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+</body>
+</html>
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script>
+    $("input[type=text]").on("input",function(){
+        console.log($(this).val())
+        
+    })
+    var arr=[2,6,7,9,10],sum=10;
+    var empty=[];
+    var fn=function(item){
+        if(item==sum){
+            empty.push(item);
+        }
+    }
+    for(var i=0;i<arr.length;i++){
+        fn(arr[i])
+    }
+    var param={};
+    $.extend({name:1},param);
+    console.log(param)
+</script>

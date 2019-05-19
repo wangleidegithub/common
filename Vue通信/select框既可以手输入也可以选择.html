@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<home></home>
+		</div>
+	</body>
+</html>
+<template id="home">
+	<div class="home">
+		<input type="text" name="greeting" list="greetings" v-model="selectValue" @change="selectBtn">
+		<datalist id="greetings" style="display:none;">
+		    <option v-for="item in list" v-bind:value="item" label="top1">{{item}}</option>
+		</datalist>
+	</div>
+</template>
+<script>
+	// 请看 张鑫旭大神详细文档https://www.zhangxinxu.com/wordpress/2013/03/html5-datalist-%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8-%E5%8F%AF%E8%A1%8C%E6%80%A7/
+	//https://blog.csdn.net/dai_qingyun/article/details/52856835
+	//http://www.mamicode.com/info-detail-1935125.html
+	var app = new Vue({
+		el: "#app",
+		data: function() {
+			return {}
+		},
+		components: {
+			"home": {
+				template: "#home",
+				data: function() {
+					return {
+						list:['Good Morning','Hello','Good Afternoon'],
+						selectValue:''
+					}
+				},
+				 beforeDestroy(){
+				 	
+				 },
+				 mounted() {
+//				     console.log(this.selectValue);
+				 },
+				methods: {
+					selectBtn(){
+						console.log(this.selectValue);//得到选择的值
+					}
+					
+					
+				}
+			}
+		}
+	})
+</script>

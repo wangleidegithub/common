@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				background: #E8EADD;
+				color: #3C323A;
+				padding: 20px;
+			}
+			
+			.wrapper {
+				width: 1024px;
+				width: -moz-calc(100% - 40px);
+				width: -webkit-calc(100% - 40px);
+				width: calc(100% - 40px);
+				margin: auto;
+			}
+			
+			#header {
+				background: #f60;
+				padding: 20px;
+				width: -webkit-calc(100% -40px);
+				width: calc(100% - 40px);
+			}
+			
+			#main {
+				border: 8px solid #B8C172;
+				float: left;
+				margin-bottom: 20px;
+				margin-right: 20px;
+				padding: 20px;
+				box-sizing: border-box;
+				width: 75%;
+				/*
+	            width: 704px;
+	            width: -moz-calc(75% - 20px * 2 - 8px * 2);
+	            width: -webkit-calc(75% - 20px * 2 - 8px * 2);*/
+	            /*width: calc(75% - 20px * 2 - 8px * 2);*/
+			}
+			
+			#accessory {
+				border: 8px solid #B8C172;
+				float: right;
+				padding: 10px;
+				box-sizing: border-box;
+				width: calc(25% - 20px);
+				/*
+            width: 208px;
+            width: -moz-calc(25% - 10px * 2 - 8px * 2 - 20px);
+            width: -webkit-calc(25% - 10px * 2 - 8px * 2 - 20px);
+            width: calc(25% - 10px * 2 - 8px * 2 - 20px);*/
+			}
+			
+			#footer {
+				clear: both;
+				background: #000;
+				padding: 20px;
+				color: #fff;
+				width: calc(100% - 20px * 2);
+				
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--https://www.cnblogs.com/wangchunlin/p/6782419.html    注意写法时减号需要带空格-->
+		<div class="wrapper">
+			<div id="header">
+				<h1>CSS3 calc()</h1>
+			</div>
+			<div id="main">
+				<h1>test……</h1>
+				<p>test……</p>
+			</div>
+			<div id="accessory">
+				<ul>
+					<li>
+						<a href="#">test1……</a>
+					</li>
+					<li>
+						<a href="#">test2……</a>
+					</li>
+					<li>
+						<a href="#">test3……</a>
+					</li>
+				</ul>
+			</div>
+			<img src="img/">
+			<div id="footer">
+				footer
+			</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript">
+	  var docElm = document.documentElement;
+    //W3C
+    if(docElm.requestFullscreen) {
+      docElm.requestFullscreen();
+    }
+
+    //FireFox
+    else if(docElm.mozRequestFullScreen) {
+      docElm.mozRequestFullScreen();
+    }
+
+    //Chrome等
+    else if(docElm.webkitRequestFullScreen) {
+      docElm.webkitRequestFullScreen();
+    }
+</script>

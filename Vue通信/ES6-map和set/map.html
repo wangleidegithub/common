@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	// map() 方法返回一个由原数组中的每个元素调用一个指定方法后的返回值组成的新数组
+	//array.map(callback[, thisArg])
+	// callback
+	// 原数组中的元素经过该方法后返回一个新的元素。
+	// currentValue
+	// callback 的第一个参数，数组中当前被传递的元素。
+	// index
+	// callback 的第二个参数，数组中当前被传递的元素的索引。
+	// array
+	// callback 的第三个参数，调用 map 方法的数组。
+	// thisArg
+	// 执行 callback 函数时 this 指向的对象。
+	// callback的参数也类似：
+
+	//  [].map(function(value, index, array) {
+	//   ...
+	//  });
+	//  replace方法的语法是：stringObj.replace(rgExp, replaceText) 其中stringObj是字符串(string)，reExp可以是正则表达式对象(RegExp)也可以是字符串(string)，replaceText是替代查找到的字符串
+	 var reg=new RegExp("终古","g"); //创建正则RegExp对象   
+	 console.log(reg);
+    var stringObj="终古人民共和国，终古人民";   
+
+    var newstr=stringObj.replace(reg,"中国");   
+
+    alert(newstr);     
+	
+	function fuzzyPlural(single) {
+	  var result = single.replace(/o/g, 'e');  
+	  console.log(result);
+	  if( single === 'kangaroo'){
+	    result += 'se';
+	  }
+	  return result; 
+	}
+
+	var words = ["foot", "goose", "moose", "kangaroo"];
+	console.log(words.map(fuzzyPlural));
+
+	// ["feet", "geese", "meese", "kangareese"]
+	// 
+	//https://www.cnblogs.com/leejersey/p/5462427.html
+</script>

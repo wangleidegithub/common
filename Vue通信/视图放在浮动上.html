@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style media="screen">
+            .red {
+                width: 300px;
+                position: absolute;
+                text-align: center;
+                top: 0;
+                z-index: 9999;
+                background-color: red;
+            }
+
+            .wrapper {
+                width: 300px;
+                height: auto;
+                position: relative;
+            }
+
+            .yellow{
+                width: 300px;
+                float: left;
+                height: 600px;
+                background-color: yellow;
+            }
+        </style>
+	<body>
+		<div class="wrapper">
+            <div class="yellow">
+                左浮动
+            </div>
+            <div class="red">
+                <p>绝对定位距底部80px</p>
+            </div>
+        </div>
+	</body>
+</html>

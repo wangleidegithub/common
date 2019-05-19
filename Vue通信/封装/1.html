@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+// 一、 生成实例对象的原始模式
+// var Cat = {
+// 　　　　name : '',
+
+// 　　　　color : ''
+
+// 　　} 
+// var cat1={};
+// 　cat1.name = "大毛"; // 按照原型对象的属性赋值
+
+// 　cat1.color = "黄色";
+
+function Cat(name,color){
+
+　　　　this.name=name;
+
+　　　　this.color=color;
+       
+　　}
+
+var cat1 = new Cat("大毛","黄色");
+
+　　var cat2 = new Cat("二毛","黑色");
+
+　　alert(cat1.name); // 大毛
+
+　　alert(cat1.color); // 黄色
+console.log(cat1)
+//这时cat1和cat2会自动含有一个constructor属性，指向它们的构造函数。
+　alert(cat1.constructor == Cat); //true 
+    alert(cat1 instanceof Cat);//true
+　 alert(cat2.constructor == Cat); //true
+</script>

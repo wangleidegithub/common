@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html
+    // function fn(){
+    //     n=999;
+    // }
+    // fn();
+    // alert(n)
+    function f1(){
+
+　　　　var n=999;
+
+　　　　nAdd=function(){n+=1}
+
+　　　　function f2(){
+　　　　　　alert(n);
+　　　　}
+
+　　　　return f2;
+
+　　}
+
+　　var result=f1();
+
+　　result(); // 999
+
+　　nAdd();
+
+　　result(); // 1000
+
+
+var name = "The Window";
+
+　　var object = {
+　　　　name : "My Object",
+
+　　　　getNameFunc : function(){
+　　　　　　return function(){
+　　　　　　　　return this.name;
+　　　　　　};
+
+　　　　}
+
+　　};
+
+　　alert(object.getNameFunc()());
+
+</script>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	//循环队列
+ function Queue() {
+        
+        //初始化队列（使用数组实现）
+        var items = [];
+		 var idx = 0;
+        //向队列（尾部）中插入元素
+        this.enqueue = function(element) {
+            items[idx].push(element);
+            idx= (idx + 1) % 10;
+        }
+
+        //从队列（头部）中弹出一个元素，并返回该元素
+        this.dequeue = function() {
+            return items.shift();
+        }
+
+        //查看队列最前面的元素（数组中索引为0的元素）
+        this.front = function() {
+            return items[0];
+        }
+
+        //查看队列是否为空，如果为空，返回true；否则返回false
+        this.isEmpty = function() {
+            return items.length == 0;
+        }
+
+        //查看队列的长度
+        this.size = function() {
+            return items.length;
+        }
+
+        //查看队列
+        this.print = function() {
+            //以字符串形势返回
+            return items.toString();
+        }
+    }
+
+    //循环队列
+    //@param Obj nameList 名单
+    //@param Int num 指定的传递次数
+    function hotPotato(nameList, num) {
+
+        var queue = new Queue();
+		
+        //把名单插入队列
+        for(var i = 0; i < nameList.length; i++) {
+            queue.enqueue(nameList[i]);
+        }
+
+        //淘汰者的名字初始值
+        var eliminated = '';
+
+        //当队列里的人数大于1人时，继续传递
+        while(queue.size() > 1) {
+            for(var i = 0; i < num; i++) {
+                //每次把队列头部弹出的队员再次插入队列的尾部，行程一个循环队列
+                queue.enqueue(queue.dequeue());
+            }
+            //当循环停止时，即到了指定的传递次数时，弹出队列头部的队员
+            eliminated = queue.dequeue();
+            console.log(eliminated + '被淘汰');
+        }
+
+        //当队列中只剩下一个队员时，即是胜利者
+        return queue.dequeue();
+    }
+
+    var names = ['dee', 'death mask', 'saga', 'mu', 'alexis'];
+    var winner = hotPotato(names, 7);
+    console.log('胜利者是' + winner);
+</script>

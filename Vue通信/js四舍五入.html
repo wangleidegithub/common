@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	var str=[1.35,1.335,1.3335,1.33335,1.333335,1.3333335];
+	for(let i=0;i<str.length;i++){
+		console.log(str[i].toFixed(i+1));
+	}
+	/*str[0].toFixed(1) // 1.4 正确
+	str[1].toFixed(2) // 1.33  错误
+	str[2].toFixed(3) // 1.333 错误
+	str[3].toFixed(4) // 1.3334 正确
+	str[4].toFixed(5)  // 1.33333 错误
+	str[5].toFixed(6)*/ // 1.333333 错误
+	function number(data){
+
+	    var value = Math.round(parseFloat(data) * 100) / 100;
+	    	console.log(value);
+	    var d = value.toString().split(".");
+	    if (d.length == 1) {
+	        value = value.toString() + ".00";
+	        return value;
+	    }
+	    if (d.length > 1) {
+	        if (d[1].length < 2) {
+	            console.log(d[1])
+	            value = value.toString() + "0";
+	        }
+	        return value;
+	    }
+	}
+	number(12.4455)
+	alert(number(12.4455));
+</script>

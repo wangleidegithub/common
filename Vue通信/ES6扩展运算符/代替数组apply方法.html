@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+	// https://www.cnblogs.com/chenhuichao/p/8493095.html
+function Person(name,age){
+	this.name=name;
+	this.age=age;
+}
+function Student(name,age,grade){
+	Person.apply(this,arguments);
+	this.grade=grade;
+}
+
+ var student=new Student("zhangsan",21,"一年级");  
+ alert("name:"+student.name+"\n"+"age:"+student.age+"\n"+"grade:"+student.grade);  
+	// ES5 的写法
+function f(x, y, z) {
+// ...
+	return x+y+z;
+}
+var args = [0, 1, 2];
+f.apply(null, args);
+console.log(f.apply(null,args));
+// ES6 的写法
+function f(x, y, z) {
+// ...
+}
+var args = [0, 1, 2];
+f(...args);
+
+// ES5 的写法
+Math.max.apply(null, [14, 3, 77]);
+console.log(Math.max.apply(null,[2,3,5]));
+// ES6 的写法
+Math.max(...[14, 3, 77]);
+//  等同于
+Math.max(14, 3, 77);
+console.log(Math.max(...[14, 3, 77]));
+ var n = Math.min( 2 , 30 ,1 , 200-10 , 300*22 , 20-30 );
+
+   alert(n);
+// https://blog.csdn.net/web_hwg/article/details/68065587
+</script>

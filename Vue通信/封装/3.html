@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+//五、 Prototype模式
+//我们可以把那些不变的属性和方法，直接定义在prototype对象上
+function Cat(name,color){
+
+　　　　this.name = name;
+
+　　　　this.color = color;
+
+　　}
+Cat.prototype.type="猫科动物";
+Cat.prototype.eat = function(){alert("吃老鼠")};
+　var cat1 = new Cat("大毛","黄色");
+
+　　var cat2 = new Cat("二毛","黑色");
+
+　　alert(cat1.type); // 猫科动物
+
+　　cat1.eat(); // 吃老鼠
+
+// 6.1 isPrototypeOf()
+//这个方法用来判断，某个proptotype对象和某个实例之间的关系。
+
+alert(Cat.prototype.isPrototypeOf())
+</script>

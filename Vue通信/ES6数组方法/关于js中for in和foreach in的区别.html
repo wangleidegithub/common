@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	/*两个的作用都用来遍历对象，但为什么有了for in语句了还要foreach in语句呢，后来看了下foreach in开发的文档，
+	foreach in是作为E4X标准的一部分在javascript 1.6中发布的，而且E4X不是ECMAScript标准的一部分。
+	foreach…in语句已被废弃，E4X中的大部分特性已被删除，但考虑到向后兼容，foreach…in只会被禁用而不会被删除，
+	可以使用ES6中新的for…of语句来代替。*/
+//	一、forEach循环遍历
+	  var array = [1,2,3,4,5,6,7];  
+		一、forEach循环遍历
+	常用遍历数组方法：
+	
+	for (var index = 0; index < myArray.length; index++) {
+	  console.log(myArray[index]);
+	}
+	自JavaScript5之后可以使用内置的forEach方法：
+	
+	myArray.forEach(function (value) {
+	  console.log(value);
+	});
+	Array.forEach(function(value , index , array){ //value为遍历的当前元素，index为当前索引，array为正在操作的数组
+	  //do something
+	},thisArg)      //thisArg为执行回调时的this值
+
+	写法虽然简单了，但是也有缺点，你不能中断循环（使用break或者return）。
+	二、for-in循环遍历
+	for-in循环实际是为循环”enumerable“对象而设计的：
+	
+	var obj = {a:1, b:2, c:3};
+	    
+	for (var prop in obj) {
+	  console.log("obj." + prop + " = " + obj[prop]);
+	}
+	
+	// 输出:
+	// "obj.a = 1"
+	// "obj.b = 2"
+	// "obj.c = 3"
+	循环一个数组：
+	
+	for (var index in myArray) {    // 不推荐这样
+	  console.log(myArray[index]);
+	}
+	不推荐用for-in来循环一个数组，因为，不像对象，数组的index跟普通的对象属性不一样，是重要的数值序列指标。
+	for–in是用来循环带有字符串key的对象的方法。
+	
+//https://www.jianshu.com/p/f8a8e4c8543a
+</script>

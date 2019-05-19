@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+			  width: 800px;
+			  height: 700px;
+			  background: #ccc;
+			}
+			.box1{
+			  text-align:center;
+			  display: table-cell;
+			  vertical-align: middle;
+			  /* font-size: 118px; */
+			}
+			img{
+			  vertical-align: middle;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="box1">
+		   <img src="img/activity.png" alt="" />
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	//利用父元素为display:table-cell类型实现垂直居中，table在ie8+的浏览器中自带的垂直居中的属性。
+//http://www.51xuediannao.com/html+css/htmlcssjq/css_img_center.html
+//注意：img{vertical-align: middle;}只是为了消除display:inline-block类型的基线对齐问题。
+</script>

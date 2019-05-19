@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+            
+        </style>
+        <script src="js/vue.min.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h3>父组件中使用了count</h3>
+            <p>{{count}}</p> 
+             <!--v-bind绑定动态数据  绑定自定义事件   -->
+            <custom-component :count="count" @increment-click="countHandle"></custom-component>
+           
+        </div>
+        <script>
+        
+            Vue.component('custom-component',{
+                props:{//向子组件传递
+                    count:{
+                        validator:function (value){
+                            return value > 10
+                        }
+                    }
+                },
+                data(){
+                    return {
+                        incrementCount:this.count  //作为局部这个组件的data的初始值  要想子组件内部修改变父组件进来的变量，那么
+                        //要让这个变量作为初始值或者计算属性方式传进子组件
+                    }
+                },
+                computed:{
+                    incrementCount2(){
+                        return this.incrementCount
+                    }
+                },
+                template:`
+                    <div>
+                        <h2>我是一个自定义的组件</h2>
+                        //子组件发生交互
+                        <input type="button" value="改变count的值" @click="changeCount(19940319)" />
+                        {{incrementCount2}}
+                    </div>
+                `,
+                methods:{
+                    changeCount(ddd){
+                    	//子组件内部改变了，但是父组件的count并没有改变，通过自定义事件可以改变父组件的count
+                        this.incrementCount++;
+                        //通知父组件 发生了改变
+                        this.$emit("increment-click",ddd)   
+                    }
+                }
+            })
+
+            new Vue({
+                el:"#app",
+                data:{
+                    count:20
+                },
+                methods:{
+                    countHandle(ddd){
+                        //alert("子组件点击了");
+                        this.count++;
+                        console.log(ddd)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

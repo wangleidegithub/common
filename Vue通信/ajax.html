@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		    <!-- 先引入 Vue -->
+		    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+		    <!-- 引入组件库 -->
+		    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		    <style type="text/css">
+		    	.respone{}
+		    	.respone textarea{
+		    		width: 1000px;
+		    		height: 500px;
+		    	}
+		    </style>
+	</head>
+	<body>
+		<div>
+			<span>url:</span>
+			<input type="text" name="ip"/>
+		</div>
+		<div>
+			<input type="button" value="增加一行" onclick="addRow()"/>
+			<input type="button" value="删除一行" onclick="deleteRow()"/>
+			<table border="1" style={{margin:200}}>
+		      <tbody>
+		        <tr>
+		          <th></th>
+		          <th>键</th>
+		          <th>值</th>
+		        </tr>
+		        <tr>
+		          <th>我是占位符</th>
+		          <th>我是占位符</th>
+		          <th>我是占位符</th>
+		        </tr>
+		        <tr>
+		          <th>我是占位符</th>
+		          <th>我是占位符</th>
+		          <th>我是占位符</th>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <br/>
+			<input type="button"  value="发送"/>
+			<div class="respone">
+				<span>响应放回数据</span><br/>
+				<textarea name="" rows="" cols="">
+					
+				</textarea>
+			</div>
+			
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	 var table = document.createElement('table');
+	    table.id = 'testTable';
+	    table.border = 1;
+	    table.width = "50%";
+
+    var tbody = document.createElement('tbody');
+    table.appendChild(tbody);
+    //添加行
+    var addRow = function () {
+        var rowLength = table.rows.length;
+        tbody.insertRow(rowLength);
+        var colLength = table.rows[0].cells.length;
+        if (colLength < 1) {
+            tbody.rows[0].insertCell(0);
+            tbody.rows[0].cells[0].appendChild(document.createTextNode('cell0.0'));
+        } else {
+            for (var i = 0; i < colLength; i++) {
+                tbody.rows[rowLength].insertCell(i);
+                tbody.rows[rowLength].cells[i].appendChild(document.createTextNode('cell' + rowLength + '.' + i));
+            }
+        }
+    }
+    //删除行
+    function deleteRow() {
+        var rowLength = table.rows.length;
+        if (rowLength < 1) {
+            alert('table is null');
+        } else {
+            table.deleteRow(rowLength - 1);
+        }
+    }
+     document.body.appendChild(table);
+</script>

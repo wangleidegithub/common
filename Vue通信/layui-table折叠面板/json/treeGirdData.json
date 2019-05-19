@@ -1,0 +1,59 @@
+{
+  "treeGirdData":[
+    {
+      "id":"1",
+      "name":"父节点1",
+      "icon":"&#xe756;",
+      "link":"https://www.layui.com/doc/",
+      "cTime":"2018-08-25 08:35:55",
+      "children":[
+        {
+          "id":"11",
+          "name":"父节点11",
+          "icon":"&#xe6af;",
+          "link":"https://www.layui.com/doc/element/icon.html",
+          "cTime":"2018-08-25 08:36:55"
+        },
+        {
+          "id":"12",
+          "name":"父节点12",
+          "icon":"&#xe715;",
+          "link":"https://www.layui.com/doc/modules/layer.html",
+          "cTime":"2018-08-25 08:38:05"
+        }
+      ]
+    },
+    {
+      "id":"2",
+      "name":"父节点2",
+      "icon":"&#xe66e;",
+      "link":"https://www.baidu.com",
+      "cTime":"2018-08-25 08:38:59",
+      "children":[
+        {
+          "id":"21",
+          "name":"子节点21",
+          "icon":"&#xe705;",
+          "link":"https://www.baidu.com",
+          "cTime":"2018-08-25 08:38:45",
+          "children":[
+            {
+              "id":"211",
+              "name":"子节点211",
+              "icon":"&#xe770;",
+              "link":"https://www.baidu.com",
+              "cTime":"2018-08-25 08:40:53"
+            },
+            {
+              "id":"211",
+              "name":"子节点211",
+              "icon":"&#xe770;",
+              "link":"https://www.baidu.com",
+              "cTime":"2018-08-25 08:45:25"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

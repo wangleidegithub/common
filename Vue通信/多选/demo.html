@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>车源</title>
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta content="telephone=no" name="format-detection">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+		<script src="../../js/rem/rem.js"></script>
+		<style type="text/css">
+		   .page{
+		   	width: 100%;
+		   	background: #ffffff;
+		   }
+			.nav{				
+				padding-left: .3rem;
+				padding-right: .3rem;
+				height: .88rem;
+				background: #FF6600;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.nav .transport{
+				width: 2rem;
+				font-size:.31rem;
+				color: #FFFFFF;
+			}
+			.nav .transport img{
+				display: inline-block;
+				width: .3rem;
+				height: .3rem;
+			}
+			.nav .transport a:last-child{
+				font-size: .23rem;
+			}
+			.nav .cartype{
+				width: 3rem;
+				height: .5rem;
+				margin-right: .8rem;
+				font-size: .29rem;
+				color: #333;
+				border:1px solid #FFFFFF;
+			}
+			.nav .cartype span{
+				display: inline-block;
+				width: 50%;
+				height: 100%;
+				line-height: .5rem;
+				text-align: center;
+				color:#FFFFFF;
+			}
+			.nav .cartype span.active{
+				background: #ffffff;
+				color: #FF6600;
+			}
+			.nav .location{
+				width: 1rem;
+				line-height: .54rem;
+				font-size: .32rem;
+				color: #ffffff;
+			}
+			.nav .location img{
+				display: inline-block;
+				width: .24rem;
+				height: .34rem;
+				vertical-align: middle;
+			}
+			.content{
+				padding-left: .3rem;
+				padding-right: .3rem;
+			}
+			.content .search{
+				width: 6.9rem;
+				height: .6rem;
+				margin-top: .24rem;
+				margin-bottom: .3rem;
+				font-size: .31rem;
+				display: flex;
+				justify-content: space-between;
+
+			}
+			.content .search input{
+				display: inline-block;
+				width: 6rem;
+				height: 100%;
+				padding: 0;
+				padding-left: .5rem;
+				background: #F5F5F5;
+				font-size: .25rem;
+				border-radius: .3rem;
+			}
+			.content .search input.bg{
+				background:#F5F5F5 url(../../images/carSource/search.png) no-repeat .15rem .14rem;
+				background-size: .3rem .3rem;
+			}
+			.content .search span{
+				color: #333333;
+				line-height: .6rem;
+			}
+			.select_type{
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				flex-direction: row;
+			}
+			.select_type .selectClass{
+				width:1.38rem;
+				height: .54rem;
+				font-size: .23rem;
+				border:2px solid #F2F2F2;
+			}
+			.select{
+				width:1.38rem;
+				height: .54rem;
+				font-size: .23rem;
+				border:2px solid #F2F2F2;
+			}
+			 .test {
+                position: relative;               
+                width:1.38rem;
+				height: .54rem;
+              	font-size: .23rem;     
+                line-height: .54rem;
+                cursor: pointer;
+                border: 1px solid #d2d2d2;
+                border-radius: 3px;
+                margin-right: 20px;
+                outline: none;
+            }
+            .test span{
+            	display: inline-block;
+            	width: 1rem;
+            	text-align: center;
+            }
+            .test:before {
+                position: absolute;
+                right: 0;
+                top: .18rem;
+                width: 0;
+                height: 0;
+                content: "";
+                border-width: 8px 8px 0 8px;
+                border-style: solid;
+                border-color: #d36969 transparent;
+                -webkit-transition: transform .25s;
+                -moz-transition: transform .25s;
+                -ms-transition: transform .25s;
+                -o-transition: transform .25s;
+                transition: transform .25s;
+            }
+
+            .test:after {
+              /*  position: absolute;
+                right: 15px;
+                top: 18px;
+                width: 0;
+                height: 0;
+                content: "";
+                border-width: 6px 6px 0 6px;
+                border-style: solid;
+                border-color: #fff transparent;
+                -webkit-transition: all .25s;
+                -moz-transition: all .25s;
+                -ms-transition: all .25s;
+                -o-transition: all .25s;
+                transition: all .25s;*/
+            }
+
+            .test.active:before {
+                -webkit-transform: rotate(180deg);
+                -moz-transform: rotate(180deg);
+                -ms-transform: rotate(180deg);
+                -o-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            .test.active:after {
+                top: 20px;
+                -webkit-transform: rotate(180deg);
+                -moz-transform: rotate(180deg);
+                -ms-transform: rotate(180deg);
+                -o-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            .test .dropdown {
+                position: absolute;
+                z-index: 1;
+                right: 0;
+                left: 0;
+                display: none;
+                padding: 0;
+                border-radius: inherit;
+                background: #ffffff;
+                border: 1px solid #d2d2d2;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
+            }
+
+            .test.active .dropdown {
+                display: block;
+            }
+
+            .test .dropdown:before {
+                position: absolute;
+                right: 13px;
+                bottom: 100%;
+                width: 0;
+                height: 0;
+                content: "";
+                border-width: 0 8px 8px 8px;
+                border-style: solid;
+                border-color: #d2d2d2 transparent;
+            }
+
+            .test .dropdown:after {
+                position: absolute;
+                right: 15px;
+                bottom: 100%;
+                width: 0;
+                height: 0;
+                content: "";
+                border-width: 0 6px 6px 6px;
+                border-style: solid;
+                border-color: #fff transparent;
+            }
+
+            .test .dropdown li {
+                float: left;
+                width: 100%;
+                font-size: 14px;
+                -webkit-transition: all .3s ease-out;
+                -moz-transition: all .3s ease-out;
+                -ms-transition: all .3s ease-out;
+                -o-transition: all .3s ease-out;
+                transition: all .3s ease-out;
+                text-align: center;
+            }
+
+            .test .dropdown li:first-of-type {
+                border-radius: 3px 3px 0 0;
+            }
+
+            .test .dropdown li:last-of-type {
+                border-radius: 0 0 3px 3px;
+            }
+
+            .test .dropdown li:hover {
+                color: #fff;
+                background: #c43c3d;
+            }
+            .car_msg_list{
+            	width: 100%;
+            	padding-top: .2rem;
+            }
+            .car_msg{
+            	position: relative;
+            	width: 100%;
+            	height:1.8rem;
+            	border:1px solid #E7E7E7;
+            	border-radius: .1rem;
+            	margin-bottom: .2rem;
+            }
+			.car_msg .car_img{
+				float: left;
+				width: 1.28rem;
+				height: 1.28rem;
+				margin-left: .21rem;
+				margin-top: .31rem;
+			}
+			.car_msg .car_img img{
+				width: 100%;
+				height: 100%;
+			} 
+			.car_name{
+				float: left;
+				width: 2rem;
+				height: 100%;
+				margin-left: .21rem;
+
+			}
+			.car_name .name{
+				margin-top: .3rem;
+				height: .3rem;
+				line-height: .3rem;
+				display: flex;
+				justify-content: space-between;
+				flex-direction: row;
+				font-size: .26rem;
+				color: #333333;
+			}
+			.car_name .name span{
+				line-height: .3rem;
+			}
+			.car_name .name span:last-child{
+				width: .9rem;
+				height: .3rem;
+			}
+			.car_name .name span img{
+				display: inline-block;
+				width: .2rem;
+				height: .28rem;
+				margin-right: .1rem;
+				vertical-align: bottom;
+			}
+			.car_name .taking_pictures{
+				font-size: .23rem;
+				color: #666666;
+				margin-top: .2rem;
+			}
+			.car_height{
+				margin-top: .16rem;
+				font-size: .23rem;
+				color: #666666;
+			}
+			.car_tel{
+				float: left;
+				height: .55rem;
+				margin-top: .6rem;
+				margin-left: .4rem;
+			}
+			.car_tel .operation{
+				float: left;
+				width:1rem;
+				text-align: center;
+				display: inline-block;
+				margin-left: -0.1rem;
+				font-size: .19rem;
+				color: #666666;
+			}
+			.car_tel img{
+				display: inline-block;
+				width: .54rem;
+				height: .54rem;
+			}
+			.car_tel .operation b{
+				font-size: .19rem;
+				display: block;
+			}
+			.distance{
+				position: absolute;
+				top: .15rem;
+				right: .21rem;
+				font-size: .2rem;
+				color: #333333;
+			}
+			.empty_car{
+				width: 100%;
+				text-align: center;
+			}
+			.empty_car img{
+				margin-top: 2.5rem;
+				display: inline-block;
+				width: 1.73rem;
+				height: 1.76rem;
+			}
+			.empty_car p{
+				width: 100%;
+				text-align: center;
+				font-size: .31rem;
+				color:#999999 ;
+			}
+			.m-alert .confirm-ft{
+				display: none;
+			}
+			.m-alert .confirm-bd{
+				padding: 10px;
+			}
+			/*底部导航*/
+			.bar-tab{
+				position: fixed;
+				left: 0;
+				bottom: 0;
+				z-index: 1;
+				width: 100%;
+				height:1.1rem;
+			    display: flex;
+			    justify-content: space-between;
+			    align-items: center;
+			    background: #ffffff;
+			    box-shadow:0px 0px 41px 0px rgba(230,230,230,1);
+			}
+			.bar-tab .tab-item .icon{
+				/*top: -0.3rem;*/
+			}
+			.bar-tab .tab-item{
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			.tab-item{
+				flex: 1;
+			}
+			.tab-item img{
+				margin-top: .14rem;
+			}
+			.tab-item img:nth-of-type(1){
+				width:.54rem ;
+				height: .53rem;
+			}
+			.tab-item img:nth-of-type(2){
+				width:.54rem ;
+				height: .48rem;
+			}
+			.tab-item img:nth-of-type(3){
+				width:.51rem ;
+				height: .51rem;
+			}
+			.tab-item img:nth-of-type(4){
+				width:.58rem ;
+				height: .51rem;
+			}
+			.tab-item img:nth-of-type(5){
+				width:.42rem ;
+				height: .52rem;
+			}
+			.bar-tab .tab-item .tab-label{
+				font-size: .2rem;
+				/*top: -0.55rem;*/
+			}
+			.bar-tab .tab-item.active, .bar-tab .tab-item:active{
+				color:#FF6600 ;
+			}
+			.yd-alert .yd-confirm-bd{
+				padding: .35rem 0;
+				font-size: .34rem;
+				color: #333333;
+			}
+			.yd-alert .yd-confirm-ft{
+				display: none;
+			}
+		</style>
+	</head>
+	<body style="background: #ffffff;">
+		<div class="page" id="app">
+			<div class="nav">
+				<div class="transport"><a href="carSource.html">[汽运]</a><img src="../../images/carSource/to.png"><a href="trainsTransport.html">铁运</a></div>
+				<div class="cartype"><span @click="cookedCar(0)" :class="{active:nearTy==0}">熟车</span><span :class="{active:nearTy==1}" @click="cookedCar(1)">附近车源</span></div>
+				<div class="location"><img src="../../images/carSource/location.png">&nbsp;唐山</div>
+			</div>
+			<!-- 熟车 -->
+			<div class="content" v-if="nearTy==0">
+				<p class="search"><input type="text" class="bg" placeholder="搜索车牌号/手机号"/><span>搜索</span></p>
+				<div class="select_type">	
+					<div id="familiarOrigin" class="test">
+			            <span>出发地</span>
+			            <ul class="dropdown">
+			                <li>期货</li>
+			                <li>股票</li>
+			                <li>期权</li>
+			            </ul>
+				    </div>
+				    <div id="familiarDestination" class="test">
+			            <span>目的地</span>
+			            <ul class="dropdown">
+			                <li>趋势</li>
+			                <li>震荡</li>
+			                <li>套利</li>
+			                <li>选股</li>
+			                <li>择时</li>
+			            </ul>
+				    </div>
+				    <div id="familiarEmpty" class="test">
+			            <span>空车</span>
+			            <ul class="dropdown">
+			                <li>期货</li>
+			                <li>股票</li>
+			                <li>期权</li>
+			            </ul>
+				    </div>
+				    <div id="familiarCarType" class="test">
+			            <span>车型</span>
+			            <ul class="dropdown">
+			                <li>趋势</li>
+			                <li>震荡</li>
+			                <li>套利</li>
+			                <li>选股</li>
+			                <li>择时</li>
+			            </ul>
+				    </div>
+				</div>
+				<div class="car_msg_list">
+					 <div class="car_msg clear">
+						<a class="car_img" href="driver_msg.html"><img  src="../../images/carSource/car-img.png" /></a>
+						<div class="car_name">
+							<p class="name"><span>十五</span><span><img src="../../images/carSource/location1.png">唐山</span></p>
+							<p class="taking_pictures">牌照: 冀G3333</p>
+							<p class="car_height">车辆: 7.6米高栏</p>
+						</div>
+						<div class="car_tel">
+							<span class="operation"><img src="../../images/carSource/add.png"><b>取消熟车</b></span>
+							<span class="operation"><img src="../../images/carSource/tel.png"><b>电话</b></span>
+							<span class="operation"><img src="../../images/carSource/dingwei.png"><b>定位</b></span>
+						</div>
+						<span class="distance">离我3.8公里</span>
+				    </div>
+				     <div class="car_msg clear">
+						<a class="car_img" href="driver_msg.html"><img  src="../../images/carSource/car-img.png" /></a>
+						<div class="car_name">
+							<p class="name"><span>十五</span><span><img src="../../images/carSource/location1.png">唐山</span></p>
+							<p class="taking_pictures">牌照: 冀G3333</p>
+							<p class="car_height">车辆: 7.6米高栏</p>
+						</div>
+						<div class="car_tel">
+							<span class="operation"><img src="../../images/carSource/add.png"><b>取消熟车</b></span>
+							<span class="operation"><img src="../../images/carSource/tel.png"><b>电话</b></span>
+							<span class="operation"><img src="../../images/carSource/dingwei.png"><b>定位</b></span>
+						</div>
+						<span class="distance">离我3.8公里</span>
+				    </div>
+				     <div class="car_msg clear">
+						<a class="car_img" href="driver_msg.html"><img  src="../../images/carSource/car-img.png" /></a>
+						<div class="car_name">
+							<p class="name"><span>欧阳保国</span><span><img src="../../images/carSource/location1.png">唐山</span></p>
+							<p class="taking_pictures">牌照: 冀G3333</p>
+							<p class="car_height">车辆: 7.6米高栏</p>
+						</div>
+						<div class="car_tel">
+							<span class="operation"><img src="../../images/carSource/add.png"><b>取消熟车</b></span>
+							<span class="operation"><img src="../../images/carSource/tel.png"><b>电话</b></span>
+							<span class="operation"><img src="../../images/carSource/dingwei.png"><b>定位</b></span>
+						</div>
+						<span class="distance">离我3.8公里</span>
+				    </div>
+				</div>    
+			   
+			</div>
+			<!-- 附近车源 -->
+			<div class="content" v-if="nearTy==1">
+				<p class="search"><input type="text" class="bg" placeholder="搜索车牌号/手机号"/><span>搜索</span></p>
+				<div class="select_type">	
+					<div id="type" class="test">
+			            <span>出发地</span>
+			            <ul class="dropdown">
+			                <li>期货</li>
+			                <li>股票</li>
+			                <li>期权</li>
+			            </ul>
+				    </div>
+				    <div id="destination" class="test">
+			            <span>目的地</span>
+			            <ul class="dropdown">
+			                <li>趋势</li>
+			                <li>震荡</li>
+			                <li>套利</li>
+			                <li>选股</li>
+			                <li>择时</li>
+			            </ul>
+				    </div>
+				    <div id="empty" class="test">
+			            <span>空车</span>
+			            <ul class="dropdown">
+			                <li>趋势</li>
+			                <li>震荡</li>
+			                <li>套利</li>
+			                <li>选股</li>
+			                <li>择时</li>
+			            </ul>
+				    </div>
+				    <div id="car_type" class="test">
+			            <span>车型</span>
+			            <ul class="dropdown">
+			                <li>趋势</li>
+			                <li>震荡</li>
+			                <li>套利</li>
+			                <li>选股</li>
+			                <li>择时</li>
+			            </ul>
+				    </div>
+				</div>
+				<div class="car_msg_list">
+					<div class="car_msg clear">
+						<a class="car_img" href="driver_msg.html"><img  src="../../images/carSource/car-img.png" /></a>
+						<div class="car_name">
+							<p class="name"><span>十五</span><span><img src="../../images/carSource/location1.png">唐山</span></p>
+							<p class="taking_pictures">牌照: 冀G3333</p>
+							<p class="car_height">车辆: 7.6米高栏</p>
+						</div>
+						<div class="car_tel">
+							<span class="operation addCar" @click="addCarBtn"><img src="../../images/carSource/add.png"><b>添加熟车</b></span>
+							<span class="operation"><img src="../../images/carSource/tel.png"><b>电话</b></span>
+							<span class="operation"><img src="../../images/carSource/dingwei.png"><b>定位</b></span>
+						</div>
+						<span class="distance">离我3.8公里</span>
+				    </div>
+				     <div class="car_msg clear">
+						<a class="car_img" href="driver_msg.html"><img  src="../../images/carSource/car-img.png" /></a>
+						<div class="car_name">
+							<p class="name"><span>十五</span><span><img src="../../images/carSource/location1.png">唐山</span></p>
+							<p class="taking_pictures">牌照: 冀G3333</p>
+							<p class="car_height">车辆: 7.6米高栏</p>
+						</div>
+						<div class="car_tel">
+							<span class="operation" @click="addCarBtn"><img src="../../images/carSource/add.png"><b>添加熟车</b></span>
+							<span class="operation"><img src="../../images/carSource/tel.png"><b>电话</b></span>
+							<span class="operation"><img src="../../images/carSource/dingwei.png"><b>定位</b></span>
+						</div>
+						<span class="distance">离我3.8公里</span>
+				    </div>
+				     <div class="car_msg clear">
+						<a class="car_img" href="driver_msg.html"><img  src="../../images/carSource/car-img.png" /></a>
+						<div class="car_name">
+							<p class="name"><span>欧阳保国</span><span><img src="../../images/carSource/location1.png">唐山</span></p>
+							<p class="taking_pictures">牌照: 冀G3333</p>
+							<p class="car_height">车辆: 7.6米高栏</p>
+						</div>
+						<div class="car_tel">
+							<span class="operation"><img src="../../images/carSource/add.png"><b>添加熟车</b></span>
+							<span class="operation"><img src="../../images/carSource/tel.png"><b>电话</b></span>
+							<span class="operation"><img src="../../images/carSource/dingwei.png"><b>定位</b></span>
+						</div>
+						<span class="distance">离我3.8公里</span>
+				    </div>
+				</div>    
+			</div>
+			<!--  -->
+			<nav class="bar bar-tab">
+				<a class="tab-item active external" href="../home.html" >
+					<img src="../../images/nav-icon/goods.png">
+					<span>大宗货物</span>
+				</a>
+				<a class="tab-item external" href="../carSource/carSource.html" >
+					<img src="../../images/nav-icon/car-source-color.png">
+					<span class="active">车源</span>
+				</a>
+				<a class="tab-item external" href="../supplyDemand/pos_logistics.html">
+					<img src="../../images/nav-icon/release.png">
+					<span class="tab-label">信息发布</span>
+				</a>
+				<a class="tab-item" href="../shopping/askBuy.html">
+					<img src="../../images/nav-icon/shopping.png">
+					<span class="tab-label">商城</span>
+				</a>
+				<a class="tab-item" href="../personalCenter/userIndex.html">
+					<img src="../../images/nav-icon/personal-center.png">
+					<span class="tab-label">个人中心</span>
+				</a>
+			</nav>
+				
+		</div>
+	   <script src="../../js/jquery-2.1.4.min.js"></script>
+	   <!-- <script type="text/javascript" src="../../js/ydui.js"></script> -->
+	   <script type="text/javascript" src="../../js/vue.min.js"></script>
+	   <script type="text/javascript" src="../../js/ydui.rem.js"></script>		
+	   <script type="text/javascript">
+			var vm=new Vue({
+				el:"#app",
+				data:{
+					nearTy:1
+				},
+				computed:{
+					
+				},
+				methods:{
+					cookedCar(type){
+						this.nearTy=type;
+					},
+					addCarBtn(){
+						console.log(this);
+						 this.$dialog.alert({ mes: '此车已添加为熟车！',
+                          timeout: 1500});
+						 setTimeout(()=>{
+						 	$(".yd-dialog-black-mask").remove();
+						 },2000)
+					}
+				}
+			})
+			
+		</script>
+		<script type="text/javascript">
+			$(function(){
+				function DropDown(el) {
+                    this.dd = el;
+                    this.span = this.dd.children('span');
+                    this.li = this.dd.find('ul.dropdown li');
+                    this.val = '';
+                }
+                DropDown.prototype.initEvents = function() {
+                    var obj = this;
+                    obj.dd.on('click', function(event) {
+                    	console.log(event);
+                        $(this).toggleClass('active').siblings().removeClass('active');
+                        // event.stopPropagation();
+                    });
+                    obj.li.on('click', function() {
+                        var opt = $(this);
+                        console.log(opt);
+                        obj.val = opt.html();
+                        if(obj.span.html() == obj.val) return;
+                        obj.span.html(obj.val);
+                        $(document).click(function() {
+                            $('.test').removeClass('active');
+                        });
+                    })
+                }
+                var type = new DropDown($('#type'));
+                var destination = new DropDown($('#destination'));
+                var empty = new DropDown($('#empty'));
+                var car_type= new DropDown($('#car_type'));
+                var familiarOrigin = new DropDown($('#familiarOrigin'));
+                var familiarDestination = new DropDown($('#familiarDestination'));
+                var familiarEmpty = new DropDown($('#familiarEmpty'));
+                var familiarCarType= new DropDown($('#familiarCarType'));
+                console.log(type);
+                 type.initEvents();
+                destination.initEvents();
+                empty.initEvents();
+                car_type.initEvents();
+                familiarOrigin.initEvents();
+                familiarDestination.initEvents();
+                familiarEmpty.initEvents();
+                familiarCarType.initEvents();
+                  var arr=[$('#type'),$('#destination'),$('#empty'),$('#car_type'),$('#familiarOrigin'),$('#familiarDestination'),$('#familiarEmpty'),$('#familiarCarType')];
+                for(let i=0;i<arr.length;i++){
+                	 $(arr[i]).bind("click",{index:i},clickHandler);
+                }
+                function clickHandler(event){
+                	console.log(event.data.index);
+                	var ind=event.data.index;
+            		var that=new DropDown(arr[ind]);
+            		that.initEvents();
+                }
+			}) 
+			
+				/*function DropDown(el) {
+                    this.dd = el;
+                    this.span = this.dd.children('span');
+                    this.li = this.dd.find('ul.dropdown li');
+                    this.val = '';
+                }
+                DropDown.prototype.initEvents = function() {
+                    var obj = this;
+                    obj.dd.on('click', function(event) {
+                    	console.log(event);
+                        $(this).toggleClass('active').siblings().removeClass('active');
+                        // event.stopPropagation();
+                    });
+                    obj.li.on('click', function() {
+                        var opt = $(this);
+                        console.log(opt);
+                        obj.val = opt.html();
+                        if(obj.span.html() == obj.val) return;
+                        obj.span.html(obj.val);
+                        $(document).click(function() {
+                            $('.test').removeClass('active');
+                        });
+                    })
+                }
+                var type = new DropDown($('#type'));
+                var destination = new DropDown($('#destination'));
+                var empty = new DropDown($('#empty'));
+                var car_type= new DropDown($('#car_type'));
+                var familiarOrigin = new DropDown($('#familiarOrigin'));
+                var familiarDestination = new DropDown($('#familiarDestination'));
+                var familiarEmpty = new DropDown($('#familiarEmpty'));
+                var familiarCarType= new DropDown($('#familiarCarType'));
+                console.log(type);*/
+               /* var arr=[$('#type'),$('#destination'),$('#empty'),$('#car_type'),$('#familiarOrigin'),$('#familiarDestination'),$('#familiarEmpty'),$('#familiarCarType')];
+                for(let i=0;i<arr.length;i++){
+                	 $(arr[i]).bind("click",{index:i},clickHandler);
+                }
+                function clickHandler(event){
+                	console.log(event.data.index);
+                	var ind=event.data.index;
+            		var that=new DropDown(arr[ind]);
+            		that.initEvents();
+                }*/
+                	/*arr.each(function(index) {
+				    console.log(index +":" + $(this).text());
+				    
+				    $(this).click(function(){
+				      alert($(this).text());
+				      $(this).css("background","#fe4365");
+				    });
+				  });*/
+               
+			
+		</script>		
+	</body>
+</html>

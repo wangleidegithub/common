@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	var arr = [1,2,2,3,4] // 需要去重的数组
+
+	var set = new Set(arr) // {1,2,3,4}
+	console.log(set);//object
+	var newArr = Array.from(set) // 再把set转变成array
+	
+	console.log(newArr) // [1,2,3,4]
+	
+</script>

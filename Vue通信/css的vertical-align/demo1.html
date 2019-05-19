@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{background:black; color:white; padding-left:20px;}
+			.dot{display:inline-block; width:4px; height:4px; background:white;vertical-align:text-bottom;}
+		</style>
+	</head>
+	<body>
+		<span class="box">
+		    <span class="dot"></span>
+		    我是一段卡哇伊的文字。
+		</span>
+	</body>
+</html>
+<!--只有一个元素属于inline-block（table-cell也可以理解为inline-block水平）水平，
+	
+只有一个元素属于inline或是inline-block（table-cell也可以理解为inline-block水平）水平，其身上的vertical-align属性才会起作用
+哪些元素呢，例如文图片，按钮，单复选框，单行/多行本框等HTML控件，只有这些元素默认情况下会对vertical-align属性起作用。-->
+	<!--虽然vertical-align属性只会在inline-block水平的元素上期作用，但是其影响到的元素涉及到inline属性的元素，
+		这里千万记住，inline水平元素受vertical-align属性而位置改变等不是因为其对vertical-align属性敏感或起作用，
+	而是受制于整个line box的变化而不得不变化的，这个后面会较为深入的分析-->

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+	<head>
+		<title>请求数据表</title>
+		<style type="text/css">
+			<style type="text/css">.respone {}
+			
+			.respone textarea {
+				width: 1000px;
+				height: 500px;
+				font-size: 14px;
+			}
+		</style>
+		</style>
+		<script>
+			//增加行
+			function insRow() {
+				var rowNums = document.getElementById("myTable").rows.length;
+				var irow = document.getElementById("myTable").insertRow(rowNums);
+				var cell0 = irow.insertCell(0);
+				var cell1 = irow.insertCell(1);
+				/* var cell2 = irow.insertCell(2);
+				 var cell3 = irow.insertCell(3);
+				 var cell4 = irow.insertCell(4);*/
+
+				/*
+				    在每个input标签中添加onchange事件，比
+				     document.getElementsByTagName("table")[0].onchange=function(){TODO....};更合适
+				*/
+				cell0.innerHTML = "<input type='text' name='name' onchange='changeContent()'/>";
+				cell1.innerHTML = "<input type='text' name='no' onchange='changeContent()'/>";
+
+			}
+
+			//删除行
+			function delRow() {
+				var rowNums = document.getElementById("myTable").rows.length;
+				var dRow = document.getElementById("myTable").deleteRow(rowNums - 1);
+			}
+		</script>
+		<script src="js/jquery-1.9.1.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<span>url:</span>
+			<input type="text" name="ip" id="ip" style="width: 200px;"/>
+		</div>
+		
+			<table id="myTable" border="1" cellspacing="0">
+				<tr>
+					<td>键</td>
+					<td>值</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="name" value="" onchange="changeContent()" /></td>
+					<td><input type="text" name="no" value="" onchange="changeContent()" /></td>
+					<!--   <td><input type="text" name="classname" value="电子商务" onchange="changeContent()"/></td>
+        <td><input type="text" name="score" value="93" onchange="changeContent()"/></td>
+        <td><input type="text" name="sex" value="男" onchange="changeContent()"/></td>-->
+				</tr>
+
+			</table>
+			<br/>
+
+			<input type="button" value="增加行" onclick="insRow()" />
+			<input type="button" value="删除行" onclick="delRow()" />
+
+			<br/>
+			<br/>
+			<!-- 使用隐藏域向后台传值 -->
+			<input type="hidden" id="hd1" name="hd1" />
+
+			<input type="submit" id="bt1" value="发送" />
+			<div class="respone">
+				<span>响应放回数据</span><br/>
+				<textarea name="" rows="" cols="">
+		
+				</textarea>
+			</div>
+
+		
+
+	</body>
+
+	<script type="text/javascript">
+		//页面加载完后加载changeContent()函数，目的：是为了当页面加载完后，能及时的把表单中的数据传递到隐藏域中。
+		window.onload = changeContent();
+		//内容有改动随时更新数据
+		function changeContent() {
+			//存放各个属性数组的数组
+			var arrays = new Array();
+
+			//存放name的数组
+			var nameArray = new Array();
+			var noArray = new Array();
+			var classnameArray = new Array();
+			var scoreArray = new Array();
+			var sexArray = new Array();
+
+			//表格的列数
+			var cellNums = document.getElementById("myTable").rows[0].cells.length;
+
+			//表格的行数
+			var rowNums = document.getElementById("myTable").rows.length;
+
+			//把所有的name值放到nameArray数组中
+			for(var m = 1; m < rowNums; m++) {
+				nameArray[m - 1] = document.getElementById("myTable").rows[m].cells[0].getElementsByTagName("input")[0].value;
+			}
+
+			//把所有的no值放到noArray数组中
+			for(var m = 1; m < rowNums; m++) {
+				noArray[m - 1] = document.getElementById("myTable").rows[m].cells[1].getElementsByTagName("input")[0].value;
+			}
+			//将数组中的数据放到json对象中
+			
+			//将json对象转为json字符串，前后台传递是以字符串的形式
+			
+			//将strdata传递到html隐藏域中
+//			document.getElementById("hd1").value = strdata;
+			var bt1=document.getElementById('bt1');
+			bt1.onclick=function(){
+				var ipUrl=document.getElementById('ip').value;
+				var data = [];
+				for(var i = 0; i < nameArray.length; i++) {
+					data.push({
+						"key": nameArray[i],
+						"value": noArray[i]
+					});
+				}
+				var strdata = JSON.stringify(data);
+				console.log(1);
+					$.ajax({
+					type: "get",
+					url:ipUrl,
+					async: false,
+					dataType: 'json',
+					data: {
+						strdata,
+					},
+					success: function(res) {
+						 console.log(res);		 
+						
+					}
+				});
+			}
+			
+		}
+	</script>
+
+</html>
+<!--http://192.168.31.24:8080/UserManage?type=1-->
+	<!--https://m.doxue.com/port/ucenter/get_mine_lately_study-->

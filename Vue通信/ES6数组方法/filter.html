@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	/*filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+	注意： filter() 不会对空数组进行检测。
+	注意： filter() 不会改变原始数组。*/
+/*	array.filter(function(currentValue,index,arr), thisValue)
+	currentValue必须。当前元素的值
+	index	可选。当前元素的索引值
+	arr	可选。当前元素属于的数组对象
+	thisValue	可选。对象作为该执行回调时使用，传递给函数，用作 "this" 的值。
+	如果省略了 thisValue ，"this" 的值为 "undefined"*/
+	var a = [1, 2, 3, 4, 5];
+
+	/*var b = a.filter((item) => {
+	    return item > 3;
+	});*/
+	var b=a.filter(function(item){
+		return item>3;
+	})
+	console.log(b);
+	var todos = [{
+    id: 1,
+	    completed: true
+	}, {
+	    id: 2,
+	    completed: false
+	}, {
+	    id: 3,
+	    completed: true
+	}, {
+	    id: 4,
+	    completed: true
+	}, {
+	    id: 5,
+	    compelted: false
+	}];
+	
+	var completedTodos = todos.filter((item) => {
+	    return item.completed;
+	});
+	
+	console.log(completedTodos);
+</script>

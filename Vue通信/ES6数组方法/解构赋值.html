@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	var [a,b,c]=[12,2,43];
+	console.log(b);
+	//与json配合使用：与顺序无关,前后名称要相同
+	var{a,b,c}={a:12,b:5,c:16};
+	var{a,b,c}={b:5,a:12,c:16};
+	console.log(a);
+	//模式匹配：左右的模式要相同
+	var [a,[c,d],b]=[12,[1,5],75];
+	var [{a,e},[c,d],b]=[{e:'eee',a:'aaa'},[1,5],75];
+	
+	var arr=[{href:'abc',img:'12',src:'vnf'}];
+	var [{href,img,src}]=arr;
+	console.log(href);
+	//之前json做判断给默认值：
+	var json={};
+	var a=json.a||12;
+	//结构赋值给默认值：
+	var {time=12,id=6}={};
+	console.log(time,id);
+	//放到返回值里面：
+	function getPos(){
+	return {stop:12,left:14};
+	}
+	var {stop,left}=getPos;
+	console.log(stop,left);
+</script>

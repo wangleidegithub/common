@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*div { line-height: 540px;}*/
+			/*img { vertical-align: middle; }*/
+			/*img{vertical-align: middle;}*/
+		</style>
+	</head>
+	<body>
+		<div style="background-color:#e5edff;line-height: 3px;"><img src="../img/activity.png">zxx</div>
+	</body>
+</html>
+<!--，对于内联元素各种想得通或者想不通的行为表现，基本上都可以用vertical-align和line-height来解释，以及进行行为矫正
+	我称vertical-align和line-height为好基友
+	vertical-align默认值是baseline, 也就是基线对齐而基线是什么，基线就是字母X的下边缘（参见“字母’x’在CSS世界中的角色和故事”一文）。
+	所以，妹子图片的下边缘就和后面zxx中的字母x下边缘对齐（见下图）。而字符zxx本身是有高度的，对吧，于是，图片下面就留空了。
+	1. 让vertical-align失效
+		图片默认是inline水平的，而vertical-align对块状水平的元素无感。因此，我们只要让图片display水平为block就可以了，
+		我们可以直接设置display或者浮动、绝对定位等（如果布局允许）。例如：img{display: block;}
+	2.使用其他vertical-align值
+	告别baseline, 取用其他属性值，比方说bottom/middle/top都是可以的。
+	3.line-height: 5px;
+-->

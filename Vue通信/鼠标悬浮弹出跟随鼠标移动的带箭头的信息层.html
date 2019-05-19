@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="author" content="//www.jb51.net/" />
+		<title>脚本之家</title>
+		<style type="text/css">
+			#content {
+				width: 100px;
+				height: 100px;
+				background: green;
+				position: relative;
+				margin: 100px;
+			}
+			
+			#inform {
+				width: 200px;
+				height: 200px;
+				border: 1px solid #ccc;
+				background: white;
+				display: none;
+				position: absolute;
+			}
+			
+			#inform span {
+				width: 0px;
+				height: 0px;
+				border-width: 10px;
+				border-style: none solid solid none;
+				position: absolute;
+			}
+			
+			#inform .tb-border {
+				left: -10px;
+				border-color: transparent #ccc transparent transparent;
+				top: -1px;
+			}
+			
+			#inform .tb-background {
+				left: -9px;
+				border-color: transparent white transparent transparent;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function() {
+				var content = document.getElementById("content");
+				var inform = document.getElementById("inform");
+				content.onclick=function(){
+					inform.style.display = "block";
+					var ev = ev||event;
+					console.dir(this);
+					inform.style.left = (ev.clientX - this.offsetLeft + 20) + "px";
+					inform.style.top = (ev.clientY - this.offsetTop - 10) + "px";
+				}
+				content.onmouseover = function(ev) {
+					var ev = ev || event;
+					inform.style.left = (ev.clientX - this.offsetLeft + 20) + "px";
+					inform.style.top = (ev.clientY - this.offsetTop - 20) + "px";
+				}
+				content.onmousemove = function(ev) {
+					var ev = ev || event;
+					inform.style.left = (ev.clientX - this.offsetLeft + 20) + "px";
+					inform.style.top = (ev.clientY - this.offsetTop - 10) + "px";
+				}
+				content.onmouseout = function(ev) {
+					// inform.style.display = "none";
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="content">
+			<div id="inform">
+				<span class="tb-border"></span>
+				<span class="tb-background"></span>
+			</div>
+		</div>
+	</body>
+
+</html>

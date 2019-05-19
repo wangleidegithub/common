@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<li v-for="n in evenNumbers">{{ n }}</li>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+		var app = new Vue({
+			el: "#app",
+			data: function(){
+				return {
+					numbers: [ 1, 2, 3, 4, 5 ]
+				}
+			},
+			computed: {//返回过滤或排序数组的计算属性。
+				  evenNumbers:function(){
+				  	return this.numbers.filter(function(number){
+				  		console.log(number);
+				  		return number%2==0
+				  	})
+				  }
+				}
+		})
+</script>

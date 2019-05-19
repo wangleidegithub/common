@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    .main-enter-active,
+    .main-leave-active{
+        transition: opacity 1s;
+    }
+    .main-enter,
+    .main-leave-to{
+        opacity: 0;
+    }
+    .text-enter-active,
+    .text-leave-active{
+        transition: opacity 1s;
+    }
+    .text-enter,
+    .text-leave-to{
+        opacity: 0;
+    }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <button class="btn" v-on:click="isShow=!isShow">{{btnName}}</button>
+        <transition name="main">
+            <p v-if="isShow">我要间隔0.5s后显示</p>
+        </transition>
+    </div>
+    <div>
+        <transition name="text">
+            <p v-if="textShow">这个杀手不太冷</p>
+        </transition>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+<script type="text/javascript">
+new Vue({
+    el:"#app",
+    data:{
+        btnName:"显示",
+        isShow:false,
+        textShow:false
+    },
+    watch:{
+        isShow:function(_newValue){
+            this.btnName=_newValue?'隐藏':'显示';
+        }
+    },
+    created:function(){
+        var _inThis=this;
+        //间隔1s后加载文本信息
+        setTimeout(function(){
+            _inThis.textShow=true;
+        },2000)
+    }
+})
+</script>
+</body>
+</html>

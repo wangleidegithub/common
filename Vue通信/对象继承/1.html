@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>     
+<script>
+    function Animal(){
+        this.species="动物";
+    }
+    // function Cat(name,color){
+    //     this.name=name;
+    //     this.color=color;
+    // }
+    //1.怎样才能使"猫"继承"动物"呢？
+    //一、 构造函数绑定
+    //第一种方法也是最简单的方法，使用call或apply方法，将父对象的构造函数绑定在子对象上，
+    //即在子对象构造函数中加一行：
+     function Cat(name,color){
+        Animal.apply(this,arguments);
+        this.name=name;
+        this.color=color;
+     }   
+     var cat1 = new Cat("大毛","黄色");
+     console.log(cat1.species)
+// 　　alert(cat1.species); 
+     //二、 prototype模式
+     Cat.prototype=new Animal();    
+     var Cat2=new Cat("大毛","黄色");
+     console.log(Cat2)
+     alert(Cat.prototype.constructor); //
+    //  console.dir(Cat2)
+    //  alert(Cat2.species);
+</script>

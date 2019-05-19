@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+//	https://www.cnblogs.com/yufann/p/ES6-note2.html
+//1)let即具有函数作用域，又具有代码块作用域
+function aa(){
+	var b=5;
+	alert(b);
+}
+aa();
+alert(b);
+//2)let不允许在相同作用域内，重复声明同一个变量。
+function () {
+let a = 10;
+var a = 1;
+}
+
+// 报错
+function () {
+let a = 10;
+let a = 1;
+}
+</script>

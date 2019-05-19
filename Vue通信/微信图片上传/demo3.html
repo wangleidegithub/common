@@ -1,0 +1,88 @@
+<!--项目上遇到一个需求，要实现一个页面有多个上传图片入口，我们使用的是webuploader上传组件；
+研究了一下终于弄好了这个功能，主要是动态获取上传按钮id和需要展现缩略图的元素id获取元素；保存供以后需要的时候直接用：
+1：首先引入所需要的css和js-->
+<!--<link rel="stylesheet" type="text/css" href="webuploader/webuploader.css">-->
+<!--<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">-->
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.min.js"></script>
+<!--2：html代码：-->
+
+<div class="container"> <div class="cerDiv"> <p class="cer">身份证件：</p> <div id="identity"></div> <div class="subBut"><span onClick="webUpload('identity')" class="uploadImg">上传图片</span></div> </div> <div class="cerDiv"> <p class="cer">用户头像：</p> <div id="logo"></div> <div class="subBut"><span onClick="webUpload('logo')" class="uploadImg">上传图片</span></div> </div> <div class="cerDiv"> <p class="cer">学历证书：</p> <div id="education"></div> <div class="subBut"><span onClick="webUpload('education')" class="uploadImg">上传图片</span></div> </div> </div>
+ 
+ 
+3：js代码：
+<script type="text/javascript">
+        /* --上传组件开始-- */
+        var $img;
+        var uploader = WebUploader.create({
+            // 选完文件后，是否自动上传。
+            auto: true,
+            // swf文件路径
+            swf: '/webuploader/Uploader.swf',
+            server: 'http://public/upload?type=images',
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '.uploadImg',
+            duplicate :true,//让图片可重复上传
+            // 只允许选择图片文件。
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            },
+            resize:false
+        });
+ 
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader.on('fileQueued', function (file) {
+ 
+            var listId = $list.getAttribute("id");
+ 
+            $("#"+listId).append( '<div id="' + file.id + '" class="item" style="position:relative;float:left;">' +
+            '<div class="img" style="height:100px;width:100%;padding:0px;"><img style="width:100%;height:100%" data-id="'+ file.id +'" src=""></div>' +
+            '<h4 class="info">' + file.name + '</h4>' + '<input id="imageId" type="hidden" name="imageId" value="' +  file.id  + '" />' +
+            '<div class="file-panel" ><a onclick="remove(this);"><i class="fa fa-trash" style=""></i></a></div>'+
+            '</div>' );
+ 
+            $img = $("#"+ file.id).find('img');
+ 
+            // 创建缩略图 如果为非图片文件，可以不用调用此方法 100（宽） x 100（高）  
+            uploader.makeThumb( file, function( error, src ) {
+                console.log(src);
+                if ( error ) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+                $img.attr( 'src', src );
+            }, 100, 100 );
+ 
+            $(".webUpload").val(file.name);
+        });
+ 
+        // 文件上传失败，显示上传出错。
+        uploader.on('uploadError', function (file) {
+            alert('上传失败');
+        });
+ 
+        // 完成上传完了，成功或者失败，先删除进度条。
+        uploader.on('uploadComplete', function (file) {
+            console.log(file);
+//            $(".webUpload").removeClass("webUpload");
+        });
+        var $list;
+        function webUpload(id) {
+            $list = document.getElementById(id);
+            document.getElementById(id).setAttribute("class","webUpload");
+        }
+ 
+        function remove(ele){
+            var imgEle = $(ele).parent().parent().find("img");
+            var imgId = $(imgEle).attr("data-id");
+            // 移除缩略图并将上传文件移出上传序列
+            var $li = $('#' + imgId);
+            $li.off().remove();
+            // 重置uploader，目前只重置了文件队列
+            uploader.reset();
+ 
+        }
+ 
+    </script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+//	浏览器可见区域的内宽度、高度（不含浏览器的边框，但包含滚动条）
+//https://www.imooc.com/article/80137
+//	alert(window.innerWidth);
+//	alert(window.innerHeight);
+	//浏览器外宽度（包含浏览器的边框，因各个浏览器的边框边一样，得到的值也是不一样的）
+//	alert(window.outerWidth);
+//	alert(window.outerHeight);
+
+//	浏览器外宽度（包含浏览器的边框，因各个浏览器的边框边一样，得到的值也是不一样的）
+	alert(window.screenLeft);// firefox=>undefinedalert(window.screenTop);// firefox=>undefined
+	
+	/*浏览器的位移，表示：
+
+ie9/10浏览器的外边缘距离屏幕边缘的距离
+
+chrome浏览器的外边缘距离屏幕边缘的距离*/
+
+	alert(window.screenX);// ie6/7/8=>undefinedalert(window.screenY);// ie6/7/8=>undefined
+	
+	alert(window.pageXOffset);    // ie6/7/8=>undefinedalert(window.pageYOffset);    // ie6/7/8=>undefined};
+
+</script>

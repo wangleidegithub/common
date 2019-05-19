@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	let xxdata=[];xxdata=this.chartOptionSet.xAxis.data;
+				  let data0=[]; data0=this.chartOptionSet.series[0].data;
+				  let data1=[]; data1=this.chartOptionSet.series[1].data;
+				  let data2=[]; data2=this.chartOptionSet.series[2].data;
+				  data0.shift();
+				  data0.push(dataymax);
+				  data1.shift();
+				  data1.push(datay);
+				  data2.shift();
+				  data2.push(dataymin);
+				  xxdata.shift();
+				  xxdata.push(datax);
+</script>

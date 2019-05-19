@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function Cat(name,color){
+　　　　this.name = name;
+　　　　this.color = color;
+　　}
+　　Cat.prototype.type = "猫科动物";
+　　Cat.prototype.eat = function(){alert("吃老鼠")};
+var cat1 = new Cat("大毛","黄色");
+
+　　var cat2 = new Cat("二毛","黑色");
+
+　　alert(cat1.type); // 猫科动物
+
+　　cat1.eat(); // 吃老鼠
+　alert(cat1.eat == cat2.eat); //true
+// 6.1 isPrototypeOf()
+// 这个方法用来判断，某个proptotype对象和某个实例之间的关系
+    console.log(Cat.prototype.isPrototypeOf(cat1));
+    // 6.2 hasOwnProperty()
+// 每个实例对象都有一个hasOwnProperty()方法，用来判断某一个属性到底是本地属性，还是继承自prototype对象的属性。
+console.log(cat1.hasOwnProperty("name"))//true
+console.log(cat1.hasOwnProperty("eat"))//false
+// 6.3 in运算符
+// in运算符可以用来判断，某个实例是否含有某个属性，不管是不是本地属性。
+alert("name" in cat1);
+
+for(var prop in cat1) { console.log("cat1["+prop+"]="+cat1[prop]); }
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var users = [
+		  {name: "张含韵", "email": "zhang@email.com"},
+		  {name: "江一燕",   "email": "jiang@email.com"},
+		  {name: "李小璐",  "email": "li@email.com"}
+		];
+	var emails = users.map(function (user) { return user.email; });	
+	console.log(emails);
+	console.log(emails.join(', ')); // zhang@email.com, jiang@email.com, li@email.com
+	console.log(typeof Array.prototype.map !="function") //function
+	//Array.prototype扩展可以让IE6-IE8浏览器也支持map方法：
+	if(typeof Array.prototype.map !="function"){
+		Array.prototype.map=function(fn,context){
+			var arr=[];
+			if(typeof fn==="function"){
+				for(var k=0,length=this.length;k<length;k++){
+					arr.push(fn.call(context,this[k],k,this));
+				}
+			}
+			return arr;
+		}
+	}
+	console.dir(Array);
+</script>
+</body>
+</html>

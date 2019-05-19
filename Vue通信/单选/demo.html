@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PlayAround2 Have Fun</title>
+    <script src="https://cdn.jsdelivr.net/vue/1.0.26/vue.min.js"></script>
+    <style>
+        h2{
+            text-decoration:underline;
+        }
+        .red{
+            color: red;
+        }
+        .green{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <h2>checkBox</h2>
+        <input type="checkbox" v-model="checked">
+        <label>{{checked}}</label>
+
+        <h2>multi checkbox</h2>
+        <input type="checkbox" id="Kobe" value="Kobe" v-model="names">
+        <label for="Kobe">Kobe</label>
+        <input type="checkbox" id="Curry" value="Curry" v-model="names">
+        <label for="Curry">Curry</label>
+        <input type="checkbox" id="Aaron" value="Aaron" v-model="names">
+        <label for="Aaron">Aaron</label>
+        <br>
+        <span>Checked names: {{names | json}}</span>
+
+        <h2>Radio</h2>
+        <input type="radio" id="one" value="one" v-model="picked">
+        <label for="one">one</label>
+        <br>
+        <input type="radio" id="two" value="two" v-model="picked">
+        <label for="two">two</label>
+        <br>
+        <span>Picked: {{picked}}</span>
+
+        <h2>Select</h2>
+        <select v-model="selected">
+            <option selected>Kobe</option>
+            <option>Curry</option>
+            <option>Aaron</option>
+        </select>
+        <span>Selected: {{selected}}</span>
+
+        <h2>Multi Select</h2>
+        <select multiple v-model="multiSelected">
+            <option>Kobe</option>
+            <option>Curry</option>
+            <option>Aaron</option>
+        </select>
+        <span>Selected: {{multiSelected}}</span>
+
+
+        <h2>Select with for</h2>
+        <select v-model="selectedPlayer">
+            <option v-for="option in options" :value="option.value">{{option.text}}</option>
+        </select>
+        <span>Selected: {{selectedPlayer}}</span>
+
+        <h2>Lazy-改变更新的事件从input->change</h2>
+        <input v-model="msg" lazy>
+        <span>Msg:{{msg}}</span>
+
+        <h2>Number(没啥吊用。。。.2->0.2,仅此而已吗?)</h2>
+        <input v-model="age" number>
+        <span>age:{{age}}</span>
+
+        <h2>debounce-延迟更新view</h2>
+        <p>Edit me<input v-model="delayMsg" debounce="500"></p>
+        <span>delayMsg:{{delayMsg}}</span>
+<a class="contact_driver" href="tel:1818185918">联系司机：1818185918</a>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                checked:false,
+                names:[],
+                picked:"",
+                selected:"",
+                multiSelected:"",
+                options:[
+                    {text:"Kobe",value:"Bryant"},
+                    {text:"Stephen",value:"Curry"},
+                    {text:"Aaron",value:"Kong"}
+                ],
+                selectedPlayer:"",
+                msg:"",
+                age:"",
+                delayMsg:""
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

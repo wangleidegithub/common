@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<script typet="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<style type="text/css">
+		.oh{overflow:hidden;}
+		.box{
+			max-height:30px;
+			transition: max-height 1s;
+			-moz-transition: max-height 1s;	/* Firefox 4 */
+			-webkit-transition: max-height 1s;	/* Safari 和 Chrome */
+			-o-transition: max-height 1s;	/* Opera */
+			background:#ccc;
+		}
+		/* 
+			关键在于指定一个大于元素在height:auto 时的高度的值，让元素过渡到一个达不到的height值，
+			这样就模拟了height:auto过渡的效果
+			注意max-height不可设置太大，否则效果不明显
+		*/
+		.box-h{max-height:120px;}
+	</style>
+	<script type="text/javascript">
+		function boxClick(){
+			$(".box").toggleClass("box-h");
+		}
+	</script>
+	<div class="box oh" onclick="boxClick()">
+		<div style="padding:5px 0px;">效果</div>
+		<div style="padding:5px 0px;">效果</div>
+		<div style="padding:5px 0px;">效果</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<template>  
+    <p class="girlBox">  
+        <header>  
+            <a href="javascript：void(0)"><i class="iconfont icon-fanhui"></i></a>  
+            <a href="javascript：void(0)" class="a0"><i class="iconfont icon-kefu"></i></a>  
+            <p class="title">女性内衣</p>  
+        </header>  
+        <p class="mainWrap wrapper" ref="wrapper">  
+            <p class="content main">  
+                <transition-group tag="ul" name="list">  
+                    <li v-for="(item,idx) in dataset" :key="idx">  
+                         <a href="javascript：void(0)">                        
+                                <img v-lazy="imgurl+item.imgurl" />      
+                             <p>{{item.name}}妹子</p>  
+                             <p>{{item.age}}岁</p>  
+                         </a>     
+                    </li>  
+                </transition-group>  
+                <p class="bottom">  
+                    <p class="bottom-tip" ref="bTip">查看更多</p>      
+                </p>  
+            </p>  
+        </p>  
+   
+    </p>  
+</template>  
+<style type="text/css" scored media="screen">  
+    .list-enter-active, .list-leave-active {  
+      transition: all 2s;  
+    }  
+    .list-enter, .list-leave-to  
+        /* .list-leave-active for below version 2.1.8 */ {  
+        opacity: 0;  
+    }  
+    .bottom-tip{width: 100%;background-color: red;color:#fff;text-align: center;height: 38px;line-height: 38px;}  
+    .girlBox{  
+        height: 100%;display:flex;flex-direction: column;  
+    }  
+    .mainWrap{  
+       flex:1;overflow: hidden;  
+    }  
+    a{color:black;text-decoration: none;}  
+    header{  
+        height: 58px;border-bottom: 3px solid #ccc;  
+          
+    }  
+    header a{  
+        width: 70px;display: inline-block;float:left;  
+        height: 100%;  
+    }  
+    header .a0{  
+        float:right;  
+    }  
+      
+    header .title{  
+       margin:0 70px;height: 100%;line-height: 58px;text-align: center;  
+    }  
+    img{width: 234px;height: 351px;}  
+    .main li{  
+        border-bottom:  3px solid #ccc;  
+        padding:25px;  
+    }  
+    .main li p{  
+        text-align: center;  
+    }  
+</style>  
+   
+<script type="text/javascript">  
+    import http from '../../../common/httpclient.js' 
+    import BScroll from 'better-scroll' 
+   
+    export default{  
+        data(){  
+            return {  
+                dataset:[],  
+                imgurl:'https://localhost:889/assets/gg/',  
+                offset:0,  
+                hasMore:true 
+            }  
+        },  
+        created(){  
+            this.loadData();  
+        },  
+        methods:{  
+            loadData(){  
+                if(this.hasMore){  
+   
+                    http.get('https://localhost:889/page?table=users&offset='+ this.offset+'&qty=3').then((res) =>{  
+                        // this.dataset = res.data.data;  
+                        console.log(res.data)  
+                        this.dataset = [...this.dataset,...res.data.data]  
+                        if(this.dataset.length>=12){  
+                            this.hasMore = false 
+                        }  
+                        this.$nextTick(() => {  
+                            if (!this.scroll) {  
+                                this.scroll = new BScroll(this.$refs.wrapper, {  
+                                    // click: true,  
+                                    // scrollY: true,                       
+                                    // pullUpLoad:{  
+                                    //   threshold: -70, // 负值是当上拉到超过低部 70px；正值是距离底部距离 时，                      
+                                    // }  
+                                })  
+   
+                                this.scroll.on('touchEnd', ()=>{  
+                                    if(this.scroll.y <= (this.scroll.maxScrollY - 30 )){  
+                                        this.$refs.bTip.innerText = '加载中.....' 
+                                        this.offset +=3;  
+                                        this.$nextTick(() =>{  
+                                            // 恢复文本值   
+                                            this.$refs.bTip.innerText = '查看更多' 
+                                              
+                                            // 向列表添加数据  
+                                            this.loadData();  
+                                            // 加载更多后,重新计算滚动区域高度  
+                                            this.scroll.refresh();  
+                                        })  
+                                    }                            
+                                })  
+                            }else {  
+                              console.log('重新计算')  
+                              this.scroll.refresh()  
+   
+                            }  
+   
+                        })  
+                    })  
+                }else{  
+                    this.$refs.bTip.innerText = '没有更多的数据了' 
+   
+                }  
+            }  
+        }  
+    }  
+   
+</script>

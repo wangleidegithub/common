@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+</html>
+<!--<script type="text/javascript">
+	window.onbeforeunload = function (e) {
+        e = e || window.event;
+        // For IE and Firefox prior to version 4
+        if (e) {
+            setCookie('snsnbgg','1',5);
+        }
+ 
+        // For Safari
+        setCookie('snsnbgg','1',5);
+    }; 
+  document.onkeydown = function (e) {//键盘按键控制
+        e = e || window.event;
+        if ((e.ctrlKey && e.keyCode == 82) || //ctrl+R
+            e.keyCode == 116) {//F5刷新，禁止
+            setTimeout(function () { alert('按下F5或者CTRL+R'); }, 100);//延时提醒，要不alert会导致return false被alert挂起从而浏览器执行了刷新
+            return false
+        }
+    }
+    document.write(new Date().getTime())
+</script>-->
+<script type="text/javascript">
+        window.onbeforeunload = function () {
+            alert("===onbeforeunload===");
+            if (event.clientX > document.body.clientWidth && event.clientY < 0 || event.altKey) {
+                alert("你关闭了浏览器");
+            } else {
+                alert("你正在刷新页面");
+            }
+            return false;
+        }
+    </script>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style>
+			div{
+				width: 300px;
+				height: 300px;
+				border: 1px solid #000000;
+				float: left;
+				margin: 10px 20px;
+			}
+			div p{
+				background-color: gray;
+				color: #FFFFFF;
+				text-align: center;
+				height: 50px;
+				line-height: 50px;
+			}
+		</style>
+		
+		<script>
+			
+			var a = 0;//声明
+			var b = 0;
+			var c = 0;
+			var d = 0;
+			var e = 0;
+			
+			//鼠标移动事件
+			function myMove(){
+				a++; // a = a + 1;
+				var font = document.getElementById("a");//获取font标签对象
+				font.innerHTML = a;
+			}
+			
+			//鼠标移入事件over
+			function myOver(){
+				b++;
+				var font = document.getElementById("b");//获取font标签对象
+				font.innerHTML = b;
+			}
+			
+			//鼠标移出事件out
+			function myOut(){
+				c++;
+				var font = document.getElementById("c");//获取font标签对象
+				font.innerHTML = c;
+			}
+			
+			//鼠标移入事件enter
+			function myEnter(){
+				d++;
+				var font = document.getElementById("d");//获取font标签对象
+				font.innerHTML = d;
+			}
+			
+			//鼠标移出事件leave
+			function myLeave(){
+				e++;
+				var font = document.getElementById("e");//获取font标签对象
+				font.innerHTML = e;
+			}
+			
+		</script>
+		
+	</head>
+	<body>
+		
+		<div onmousemove="myMove()">
+			<font id="a">0</font>
+			<p>鼠标移动事件onmousemove</p>
+		</div>
+		
+		<!--事件冒泡-->
+		<div onmouseover="myOver()">
+			<font id="b" style="border: 1px solid #000000;">0</font>
+			<p>鼠标移入事件onmouseover</p>
+		</div>
+		
+		<div onmouseout="myOut()">
+			<font id="c">0</font>
+			<p>鼠标移出事件onmouseout</p>
+		</div>
+		
+		<div onmouseenter="myEnter()">
+			<font id="d">0</font>
+			<p>鼠标移入事件onmouseenter</p>
+		</div>
+		
+		<div onmouseleave="myLeave()">
+			<font id="e">0</font>
+			<p>鼠标移出事件onmouseleave</p>
+		</div>
+		
+	</body>
+</html>

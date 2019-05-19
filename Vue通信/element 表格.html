@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 先引入 Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #495060;
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+				    background-color: #fff;
+        }
+
+        /* 可编辑表格 */
+
+        .el-tb-edit .el-input,
+        .el-tb-edit .el-input-number,
+        .el-tb-edit .el-select {
+            display: none;
+            width: 100%;
+        }
+
+        .el-tb-edit .current-row .el-input,
+        .el-tb-edit .current-row .el-input-number,
+        .el-tb-edit .current-row .el-select {
+            display: inherit;
+        }
+
+        .el-tb-edit .current-row .el-input+span,
+        .el-tb-edit .current-row .el-input-number+span,
+        .el-tb-edit .current-row .el-select+span {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <el-button size="mini" @click="addDemo">+</el-button>
+        <el-table :data="tableData" size="mini" highlight-current-row border style="width: 100%" class="el-tb-edit"
+        	 @current-change="handleCurrentChange"
+            ref="demoTable">
+            <el-table-column type="index" width="50">
+            </el-table-column>
+            <el-table-column prop="name" label="姓名" width="180">
+                <template scope="scope">
+                    <el-input size="mini" v-model="scope.row.name" placeholder="请输入内容"></el-input>
+                    <span>{{scope.row.name}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="isSB" label="是学生" width="80">
+                <template scope="scope">
+                    <el-checkbox size="mini" v-model="scope.row.isSB"></el-checkbox>
+                    <span>{{({true:"是",false:"否"})[scope.row.isSB]}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="sex" label="性别" width="80">
+                <template scope="scope">
+                    <el-select v-model="scope.row.sex" placeholder="请选择" size="mini">
+                        <el-option label="男" :value="1"></el-option>
+                        <el-option label="女" :value="0"></el-option>
+                    </el-select>
+                    <span>{{({1:"男",0:"女"})[scope.row.sex]}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="name" label="年龄" width="180">
+                <template scope="scope">
+                    <el-input-number v-model="scope.row.age" size="mini" controls-position="right" :min="1" :max="100"></el-input-number>
+                    <span>{{scope.row.age}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="date" label="日期" width="220">
+                <template scope="scope">
+                    <el-date-picker size="mini" v-model="scope.row.date" type="date" placeholder="选择日期" format="yyyy 年 MM 月 dd 日" value-format="yyyy-MM-dd">
+                    </el-date-picker>
+                    <span>{{scope.row.date}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="address" label="地址">
+                <template scope="scope">
+                    <el-input size="mini" v-model="scope.row.address" placeholder="请输入内容"></el-input>
+                    <span>{{scope.row.address}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column label="操作">
+                <template slot-scope="scope">
+                    <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        {{JSON.stringify(tableData)}}
+    </div>
+    <script>
+        var app;
+        (function () {
+            app = new Vue({
+                el: "#app",
+                data: {
+                    tableData: [{
+                        date: '2016-05-02',
+                        name: '王小虎',
+                        age: 18,
+                        sex: 1,
+                        isSB: true,
+                        address: '上海市普陀区金沙江路 1518 弄'
+                    }, {
+                        date: '2016-05-04',
+                        sex: 1,
+                        name: '王小虎',
+                        isSB: true,
+                        age: 18,
+                        address: '上海市普陀区金沙江路 1517 弄'
+                    }],
+                    currentRow: null,
+                },
+                methods: {
+                    addDemo() {
+                        var d = {
+                            date: '',
+                            sex: 1,
+                            name: '',
+                            age: 18,
+                            isSB: true,
+                            address: ''
+                        };
+                        app.tableData.push(d);
+//                      setTimeout(() => { this.$refs.demoTable.setCurrentRow(d);console.log(1111) }, 10);//<==用于延时渲染后选中这行
+                        
+                    },
+                    handleCurrentChange(val) {
+                        this.currentRow = val;
+                    },
+                    handleDelete(index, r) {
+                        app.tableData.splice(index, 1)
+                    }
+                }
+            });
+        })()
+    </script>
+</body>
+
+</html>
+    	<style></style>
+	    <script></script>
+	
+<!-- Generated by RunJS (Mon Sep 10 17:45:08 CST 2018) 2ms -->

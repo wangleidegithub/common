@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多选功能</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0;}
+        ul{list-style:none;}
+        #app{
+            width: 500px;
+            margin:20px auto;
+            background: #eee;
+            padding: 10px;
+        }
+        .list{padding:10px 3%;overflow: hidden;}
+        .list li{float: left;width: 25%;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <h4>选择号码：</h4>
+    <ul class="list">
+        <li>
+            <label for="M">M</label>
+            <input type="checkbox" id="M" v-model="size.M">
+        </li>
+        <li>
+            <label for="L">L</label>
+            <input type="checkbox" id="L" v-model="size.L">
+        </li>
+        <li>
+            <label for="XL">XL</label>
+            <input type="checkbox" id="XL" v-model="size.XL">
+        </li>
+        <li>
+            <!-- 在多选中设置值的具体内容，我们可以绑定true-value和false-value -->
+            <label for="mail">包邮</label>
+            <input type="checkbox" id="mail" v-model="size.mail" v-bind:true-value="'包邮'" v-bind:false-value="'不包邮'">
+        </li>
+    </ul>
+    <!-- 查看数据的结果 -->
+    <div>{{size|json}}</div>
+</div>
+<script src="http://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            size:{
+                M:false,
+                L:true,
+                XL:false,
+                mail:false
+            }
+        }
+    });
+</script>
+</body>
+</html>

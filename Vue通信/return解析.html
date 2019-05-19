@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	
+	/*在js中return 语句只能放在function中，如果不是在一个function中弹出如上错误。 
+解决方法只要把这个if语句放到一个函数中即可。*/
+function fn(){
+	let a=5,b=2
+	if(a>b){
+		return;
+	}
+	alert(a-b);
+}
+
+fn();//不会执行后面的所有语句
+</script>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js" ></script>
+		<script src="js/vue.min.js"></script>
+		<style>
+				.slider{
+			width: 100%;
+			position:relative;
+			height: 0.5rem;
+		}
+		.left-btn,.right-btn{
+			position: absolute;
+			top: -0.34rem;
+			transform:translate(-50%,0);
+		}
+		.left-btn:before{
+			content: ""; 
+			display: block;
+			width: 0; 
+			height: 0.4rem;
+			border-left: 0.17rem solid transparent; 
+			border-right: 0.17rem solid transparent; 
+			border-bottom: 0.17rem solid #B6B6B6; 
+		}
+		.left-btn:after{
+			content: "";
+			display: block;
+		    height: 0.30rem;
+		    width: 0.34rem;
+		    background: #B6B6B6;
+		    border-bottom-left-radius: 0.1rem;
+		    border-bottom-right-radius: 0.1rem;
+		}
+		.right-btn:before{
+			content: ""; 
+			display: block;
+			width: 0; 
+			height: 0.4rem;
+			border-left: 0.17rem solid transparent; 
+			border-right: 0.17rem solid transparent; 
+			border-bottom: 0.17rem solid #B6B6B6; 
+		}
+		.right-btn:after{
+			content: "";
+			display: block;
+		    height: 0.30rem;
+		    width: 0.34rem;
+		    background: #B6B6B6;
+		    border-bottom-left-radius: 0.1rem;
+		    border-bottom-right-radius: 0.1rem;
+		}
+
+			.propo{
+				width: 0%;
+				height: 0.04rem;
+				background: #FFD00D;
+				position: absolute;
+			    top: 0;
+			    left: 0;
+			    z-index: 2;
+			}
+			.propo-bg{
+				background: #B6B6B6;
+				border-radius: 0.04rem;
+				height: 0.04rem;
+				width:100%;
+				position: absolute;
+			    top: 0;
+			    left: 0;
+			    z-index: 1;
+			}
+			
+				.active:before{
+					border-bottom-color: #FF8C30
+				}
+				.active:after{
+					background: #FF8C30;
+				}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<home></home>
+		</div>
+	</body>
+</html>
+<template id="home">
+	<div class="home">
+		 <div class="slider" ref="mySlider">
+	        <div class="left-btn" :class="{active:myPosition.isBtn==2}"></div>
+	        <div class="propo"></div>
+	        <div class="propo-bg"></div>
+	        <div class="right-btn" :class="{active:myPosition.isBtn==1}"></div>
+	    </div>
+	</div>
+</template>
+<script>
+	var app = new Vue({
+		el: "#app",
+		data: function() {
+			return {
+				
+			}
+		},
+		components: {
+			"home": {
+				template: "#home",
+				data: function() {
+					return {
+						myPosition:{
+		                    left:0,
+		                    right:0,
+		                    now:0,
+		                    isBtn:0,
+		                    propoWidth:0
+		                },
+		                myDefault:null
+					}
+				},
+				 watch:{
+		            min(New,old){
+		                this.myDefault()
+		            },
+		            max(New,old){
+		                this.myDefault()
+		            }
+		       	},
+				 beforeDestroy(){
+				 	
+				 },
+				 mounted() {
+				     let that = this;
+		            let mySlider = this.$refs.mySlider;
+		            let propo = mySlider.children[1];
+		            let rightBtn = mySlider.children[3];
+		            let leftBtn = mySlider.children[0];
+		            let myWidth = 0 ;
+				 },
+				methods: {
+					
+					
+					
+				}
+			}
+		}
+	})
+</script>

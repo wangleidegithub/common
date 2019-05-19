@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>菜单管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="layui/css/layui.css" media="all" />
+		<!--<script src="layui/layui.all.js"></script>-->
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div class="" style="margin-top: 20px;margin-left:20px;">
+			<button class="layui-btn" id="expand">全部展开</button>
+			<button class="layui-btn" id="collapse">全部收起</button>
+			<button class="layui-btn" id="deleteAll">删除</button>
+			<a class="layui-btn " title="刷新当前页" href="javascript:void(0);" onclick="layer.load(1);window.location.reload(true);"><i class="layui-icon"></i>刷新</a>
+			<div id="demo"></div>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="layui/layui.js"></script>
+	<script type="text/javascript">
+		function del(nodeId) {
+			alert(nodeId)
+		}
+
+		var layout = [{name: 'id',field: 'id',headerClass: 'value_col',colClass: 'value_col'},
+			{name: '菜单名称',treeNodes: true,headerClass: 'value_col',colClass: 'value_col'},
+			{name: '操作',headerClass: 'value_col',colClass: 'value_col',style: 'width: 30%',
+				render: function(row) {
+					return [
+						'<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"   onclick="del(' + row.id + ')" title="删除"> <i class="layui-icon ">&#xe640;</i> </a>',
+					].join('');
+				}
+			}
+		];
+
+		layui.use(['form', 'tree', 'layer'], function() {
+			var layer = layui.layer,
+				form = layui.form,
+				$ = layui.jquery;
+
+			var tree1 = layui.treeGird({
+				elem: '#demo', //传入元素选择器
+				spreadable: false, //设置是否全展开，默认不展开
+				checkbox: true,
+				nodes: [{
+						"id": "1",
+						"name": "父节点1",
+						"children": [{
+								"id": "11",
+								"name": "父节点11"
+							},
+							{
+								"id": "12",
+								"name": "父节点12"
+							}
+						]
+					},
+					{
+						"id": "2",
+						"name": "父节点2",
+						"children": [{
+							"id": "21",
+							"name": "子节点21",
+							"children": [{
+									"id": "211",
+									"name": "子节点211"
+								},
+								{
+									"id": "211",
+									"name": "子节点211"
+								}
+							]
+						}]
+					}
+				],
+				layout: layout
+			});
+
+			form.render();
+
+			$('#collapse').on('click', function() {
+				layui.collapse(tree1);
+			});
+
+			$('#deleteAll').on('click', function() {
+				var arr = layui.getSelected(tree1);
+				//console.log(arr);
+			});
+
+			$('#expand').on('click', function() {
+				layui.expand(tree1);
+			});
+
+		});
+	</script>
+
+</html>

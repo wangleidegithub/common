@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+//三、 直接继承prototype
+    function Cat(name,color){
+　　　　this.name = name;
+　　　　this.color = color;
+　　}
+　function Animal(){ }
+　　Animal.prototype.species = "动物";
+Cat.prototype=Animal.prototype;
+Cat.prototype.constructor=Cat; //这一句实际上把Animal.prototype对象的constructor属性也改掉了！
+var cat1=new Cat("大毛","黄 色");
+　alert(cat1.species); // 动物
+
+//与前一种方法相比，这样做的优点是效率比较高（不用执行和建立Animal的实例了），
+//比较省内存。缺点是 Cat.prototype和Animal.prototype现在指向了同一个对象，那么任何对Cat.prototype的修改，都会反映到Animal.prototype。
+
+alert(Animal.prototype.constructor); // Cat
+</script>
