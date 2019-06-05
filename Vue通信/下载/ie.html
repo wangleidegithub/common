@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="../img/activity.png" download="a.png">下载</a>
+    <a href="#" rel="external nofollow" >鼠标移过来看看这个网址是否变颜色：<span>www.jb51.net</span></a> 
+    <textarea name="" id="" cols="30" rows="10">111122</textarea>
+    <button onClick="saveAs('code');">另存为</button>
+</body>
+</html>
+<script>
+function doSave(obj) {
+    obj=document.getElementById('obj');//obj是需要下载的内容
+    if (isIE()){//IE浏览器保存文本框内容
+    var winname = window.open('', '_blank', 'top=10000');
+    winname.document.open('text/html', 'replace');
+    winname.document.writeln(obj.value);
+    winname.document.execCommand('saveas','','code.htm');//code.htm可改为自定义文件名
+    winname.close();}
+    else{
+        saveAs(obj,'code.html');
+    }
+}
+function saveAs(obj,filename){//chrome,火狐等现代浏览器保存文本框内容
+    var a=document.createElement('a');
+    a.setAttribute('href','data:text/html;gb2312,'+obj.value);
+    a.setAttribute('download',filename);
+    a.setAttribute('target','_blank');
+    a.style.display="none";
+    obj.parentNode.appendChild(a);
+    a.click();
+} 
+function isIE()//判断浏览器类型
+{ 
+  if(!!window.ActiveXObject || "ActiveXObject" in window) 
+    return true; 
+  else 
+    return false; 
+} 
+</script>

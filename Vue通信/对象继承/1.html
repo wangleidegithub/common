@@ -23,6 +23,7 @@
     //第一种方法也是最简单的方法，使用call或apply方法，将父对象的构造函数绑定在子对象上，
     //即在子对象构造函数中加一行：
      function Cat(name,color){
+         console.log(arguments)
         Animal.apply(this,arguments);
         this.name=name;
         this.color=color;

@@ -31,15 +31,19 @@ function Cat(name,color){
 　　　　this.color=color;
        
 　　}
-
+function Cat(){
+    this.name=name;
+} 
 var cat1 = new Cat("大毛","黄色");
 
 　　var cat2 = new Cat("二毛","黑色");
 
-　　alert(cat1.name); // 大毛
+// 　　alert(cat1.name); // 大毛
 
-　　alert(cat1.color); // 黄色
-console.log(cat1)
+// 　　alert(cat1.color); // 黄色
+console.log(typeof cat1.constructor);
+var a=cat1.constructor;
+console.log(a);
 //这时cat1和cat2会自动含有一个constructor属性，指向它们的构造函数。
 　alert(cat1.constructor == Cat); //true 
     alert(cat1 instanceof Cat);//true

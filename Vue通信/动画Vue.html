@@ -21,11 +21,15 @@
         opacity: 0;
     }
     </style>
+    <script src="./js/vue2-6.min.js"></script>
 </head>
 <body>
 <div id="app">
     <div>
         <button class="btn" v-on:click="isShow=!isShow">{{btnName}}</button>
+        <button v-bind:disabled="isButtonDisabled">Button</button>
+        <!-- <a v-on:[eventname]="doSomething">2222 </a> -->
+        <input v-on:[eventName]="doSomething" />
         <transition name="main">
             <p v-if="isShow">我要间隔0.5s后显示</p>
         </transition>
@@ -36,14 +40,17 @@
         </transition>
     </div>
 </div>
-<script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+<!-- <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script> -->
+<!-- <script src="./js/vue2-6.min.js"></script> -->
 <script type="text/javascript">
 new Vue({
     el:"#app",
     data:{
         btnName:"显示",
         isShow:false,
-        textShow:false
+        textShow:false,
+        isButtonDisabled:false,
+        eventName:''
     },
     watch:{
         isShow:function(_newValue){
@@ -56,6 +63,11 @@ new Vue({
         setTimeout(function(){
             _inThis.textShow=true;
         },2000)
+    },
+    methods:{
+        doSomething(){
+            console.log(1)
+        }
     }
 })
 </script>

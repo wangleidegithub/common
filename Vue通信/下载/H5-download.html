@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea name="" id="" cols="30" rows="10">
+            <!doctype html>
+            <html>
+            <head>
+            <meta charset="utf-8">
+            <title>测试</title>
+            </head>
+            
+            <body>
+            <h1>测试</h1>
+            </body>
+            </html>
+    </textarea>
+    <!-- https://www.zhangxinxu.com/wordpress/2017/07/js-text-string-download-as-html-json-file/ -->
+    <!-- <a href="../img/activity.png" download="a.png">下载</a>s -->
+    <input type="button" value="按钮">       
+</body>
+
+</html>
+<script>
+    var eleTextarea = document.querySelector('textarea');
+    var eleButton=document.querySelector('input[type="button"]');
+    var fundownload=function(content,filename){
+        var eleLink=document.createElement('a');
+        eleLink.download=filename;
+        eleLink.style.display="none";
+        var blob=new Blob([content]);
+        eleLink.href = URL.createObjectURL(blob);
+        document.body.appendChild(eleLink);
+        console.dir(eleLink);
+        eleLink.click();
+        // 然后移除
+        document.body.removeChild(eleLink);
+    }
+    if('download' in document.createElement('a')){
+        eleButton.addEventListener('click',function(){
+            fundownload(eleTextarea.value,'test.html');
+        })
+    }else{
+        eleButton.onclick=function(){
+            alert("浏览器不支持");
+        }
+    }
+</script>
