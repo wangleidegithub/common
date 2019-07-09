@@ -13,8 +13,8 @@
 		console.log(a.toFixed(2))
 		// IE         1.34
 		//chorme   1.33
-		一：四舍五入并不是真正的四舍五入
-这个问题是在测试阶段我们的测试人员提出来的。一开始我也很吃惊，结果待我在控制台试了一些数据之后，我懵逼了,我一直在用的toFixed方法竟然有问题，我竟然糊涂的用它做了很多事！以下是我在chrome上的结果：
+		//一：四舍五入并不是真正的四舍五入
+//这个问题是在测试阶段我们的测试人员提出来的。一开始我也很吃惊，结果待我在控制台试了一些数据之后，我懵逼了,我一直在用的toFixed方法竟然有问题，我竟然糊涂的用它做了很多事！以下是我在chrome上的结果：
 
 1.35.toFixed(1) // 1.4 正确
 1.335.toFixed(2) // 1.33  错误
@@ -22,7 +22,7 @@
 1.33335.toFixed(4) // 1.3334 正确
 1.333335.toFixed(5)  // 1.33333 错误
 1.3333335.toFixed(6) // 1.333333 错误
-果然有问题，只能网上找资料了，结果又发现同样是上面的一段代码，在IE下又小同大异，以下是IE上的结果：
+//果然有问题，只能网上找资料了，结果又发现同样是上面的一段代码，在IE下又小同大异，以下是IE上的结果：
 
 1.35.toFixed(1) // 1.4 正确
 1.335.toFixed(2) // 1.34  正确
@@ -30,26 +30,23 @@
 1.33335.toFixed(4) // 1.3334 正确
 1.333335.toFixed(5)  // 1.33334 正确
 1.3333335.toFixed(6) // 1.333334 正确
-果然IE才是爸爸。难道是浏览器兼容性问题？兼容性问题难道不应该是出在IE中吗？既然找到问题所在，就好下手。我的办法是把要四舍五入的后一位单独拎出来单独判断。
+//果然IE才是爸爸。难道是浏览器兼容性问题？兼容性问题难道不应该是出在IE中吗？既然找到问题所在，就好下手。我的办法是把要四舍五入的后一位单独拎出来单独判断。
 
-let result = number.toString();
-const arr = result.split('.');
-const integer = arr[0];
-const decimal = arr[1];
-result = integer + '.' + decimal.substr(0, n);
-const last = decimal.substr(n, 1);
+// let result = number.toString();
+// const arr = result.split('.');
+// const integer = arr[0];
+// const decimal = arr[1];
+// result = integer + '.' + decimal.substr(0, n);
+// const last = decimal.substr(n, 1);
 
 // 四舍五入，转换为整数再处理，避免浮点数精度的损失
-if (parseInt(last, 10) >= 5) {
-const x = Math.pow(10, n);
-result = ((parseFloat(result) * x) + 1) / x;
-result = result.toFixed(n);
-}
+// if (parseInt(last, 10) >= 5) {
+// const x = Math.pow(10, n);
+// result = ((parseFloat(result) * x) + 1) / x;
+// result = result.toFixed(n);
+// }
 
-return result;
+// return result;
 
-作者：DanD丶榆木稚年
-链接：https://www.jianshu.com/p/849b0ae36b36
-來源：简书
-简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+// ś
 	</script>

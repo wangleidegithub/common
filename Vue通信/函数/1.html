@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    if (true) {
+        var x = 5;
+
+    }
+    console.log(x);//对于var
+    // f(); function f() { console.log(111) };
+    function fn() {
+        a();
+        b();
+        c();
+    }
+    // fn.toString()// function f() 
+    // f();var f = function (){};
+    // var f = function () {
+    //     console.log('1');
+    // }
+    // function f() {
+    //     console.log('2');
+    // }
+
+    // f() // 1
+    // console.log(fn.toString())
+    // {//  a();//  b();//  c();// }
+    // var v = 1; function f() {
+    //     var v = 2; console.log(v);
+    // }
+
+    // f() // 2v // 
+    // var a = 1; 
+    // var x = function () {
+    //     console.log(a);
+    // }; 
+    // function f() {
+    //     var a = 2;
+    //     x();
+    // }
+
+    // f() // 1
+    // function foo() {
+    //     var x = 1;
+    //     function bar() {
+    //         console.log(x);
+    //     } return bar;
+    // } var x = 2; var f = foo();
+    // f() // 1
+    // function f(a, b) {
+    //     return a;
+    // }
+
+    // f(1, 2, 3) // 1
+    // f(1) // 
+    // f() // undefined
+    // f.length // 2
+    // function f(a, b) {  return a;
+    // }
+
+    // f(1) 
+    // // SyntaxError: Unexpected token ,(…)
+    // f(undefined, 1) 
+    // // undefined
+    function Person(name) {
+        var _age; 
+        function setAge(n) {
+            _age = n;
+        } 
+        function getAge() {
+            return _age;
+        } 
+        return {
+            name: name,
+            getAge: getAge, setAge: setAge
+        };
+    } 
+    var p1 = Person('张三');
+    p1.setAge(25);
+    p1.getAge() // 25
+</script>
